@@ -43,7 +43,7 @@
     </view>
   </view>
 
-  <!-- 当前课程卡片 -->
+  <!---- 当前课程卡片 -->
   <view class="course-card">
     <view class="course-header">
       <text class="course-name">木工创意</text>
@@ -117,40 +117,63 @@
     </view>
   </view>
 
-  <!-- 功能网格 -->
-  <view class="function-grid">
-    <view class="grid-item" bindtap="navigateTo" data-page="intro">
-      <view class="icon-circle"></view>
-      <text class="label">课程介绍</text>
+<!-- 功能按钮网格 -->
+<view class="function-grid">
+  <button class="func-btn" bindtap="navigateTo" data-page="intro">
+    <view class="btn-icon yellow">
+      <text class="iconfont icon-book"></text>
     </view>
-    <view class="grid-item" bindtap="navigateTo" data-page="safety">
-      <view class="icon-circle"></view>
-      <text class="label">安全须知</text>
+    <text class="btn-text">课程介绍</text>
+  </button>
+  
+  <button class="func-btn" bindtap="navigateTo" data-page="safety">
+    <view class="btn-icon orange">
+      <text class="iconfont icon-safe"></text>
     </view>
-    <view class="grid-item" bindtap="navigateTo" data-page="materials">
-      <view class="icon-circle"></view>
-      <text class="label">工种资料</text>
+    <text class="btn-text">安全须知</text>
+  </button>
+  
+  <button class="func-btn" bindtap="navigateTo" data-page="materials">
+    <view class="btn-icon blue">
+      <text class="iconfont icon-file"></text>
     </view>
-    <view class="grid-item" bindtap="navigateTo" data-page="leave">
-      <view class="icon-circle"></view>
-      <text class="label">请假补课</text>
+    <text class="btn-text">工种资料</text>
+  </button>
+  
+  <button class="func-btn" bindtap="navigateTo" data-page="leave">
+    <view class="btn-icon green">
+      <text class="iconfont icon-calendar"></text>
     </view>
-    <view class="grid-item" bindtap="navigateTo" data-page="project">
-      <view class="icon-circle"></view>
-      <text class="label">分散项目</text>
+    <text class="btn-text">请假补课</text>
+  </button>
+  
+  <button class="func-btn" bindtap="navigateTo" data-page="project">
+    <view class="btn-icon purple">
+      <text class="iconfont icon-project"></text>
     </view>
-    <view class="grid-item" bindtap="navigateTo" data-page="team">
-      <view class="icon-circle"></view>
-      <text class="label">分散组队</text>
+    <text class="btn-text">分散项目</text>
+  </button>
+  
+  <button class="func-btn" bindtap="navigateTo" data-page="team">
+    <view class="btn-icon pink">
+      <text class="iconfont icon-team"></text>
     </view>
-    <view class="grid-item" bindtap="navigateTo" data-page="process">
-      <view class="icon-circle"></view>
-      <text class="label">加工须知</text>
+    <text class="btn-text">分散组队</text>
+  </button>
+  
+  <button class="func-btn" bindtap="navigateTo" data-page="process">
+    <view class="btn-icon cyan">
+      <text class="iconfont icon-setting"></text>
     </view>
-    <view class="grid-item" bindtap="navigateTo" data-page="report">
-      <view class="icon-circle"></view>
-      <text class="label">报告递交</text>
+    <text class="btn-text">加工须知</text>
+  </button>
+  
+  <button class="func-btn" bindtap="navigateTo" data-page="report">
+    <view class="btn-icon red">
+      <text class="iconfont icon-edit"></text>
     </view>
-  </view>
+    <text class="btn-text">报告递交</text>
+  </button>
+</view>
 
 </view>
