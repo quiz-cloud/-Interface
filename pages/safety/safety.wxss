@@ -1,0 +1,87 @@
+page {
+  background-color: #ffffff;
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-bar {
+  height: 88rpx;
+  padding-top: env(safe-area-inset-top); /* 适配刘海屏 */
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1rpx solid #eee;
+}
+
+.nav-title {
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+.content-scroll {
+  flex: 1;
+  padding: 30rpx 40rpx;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 48rpx; /* */
+  font-weight: bold;
+  color: #1f1f1f;
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+
+.version {
+  font-size: 26rpx; /* */
+  color: #999999;
+  text-align: center;
+  margin-bottom: 60rpx;
+}
+
+.section .p {
+  display: block;
+  font-size: 30rpx; /* */
+  color: #333333;
+  line-height: 48rpx; /* */
+  margin-bottom: 40rpx; /* */
+  text-align: justify;
+}
+
+.highlight {
+  color: #ff4d4f;
+  font-weight: bold;
+}
+
+.footer-bar {
+  height: 140rpx; /* */
+  background-color: #ffffff;
+  border-top: 1rpx solid #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.confirm-btn {
+  width: 680rpx !important; /* */
+  height: 90rpx;
+  line-height: 90rpx;
+  background-color: #F8C857;
+  color: #ffffff;
+  border-radius: 45rpx;
+  font-size: 34rpx;
+  font-weight: bold;
+  padding: 0;
+}
+
+.confirm-btn.disabled {
+  background-color: #ffdca3; /* 禁用态颜色 */
+  color: #ffffff;
+}
