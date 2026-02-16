@@ -1,0 +1,134 @@
+page {
+  height: 100%;
+  background-color: #F5F7FA;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-bar {
+  height: 88rpx;
+  padding-top: env(safe-area-inset-top);
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1rpx solid #eee;
+}
+
+.nav-title {
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+/* 左右布局容器 */
+.main-layout {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* --- 左侧菜单 --- */
+.sidebar {
+  width: 190rpx; /* */
+  background-color: #F5F7FA;
+}
+
+.menu-item {
+  height: 100rpx; /* */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  color: #666666;
+  position: relative;
+}
+
+.menu-item.active {
+  background-color: #ffffff; /* */
+  color: #1f1f1f;
+  font-weight: bold;
+}
+
+.indicator {
+  position: absolute;
+  left: 0;
+  top: 30rpx;
+  width: 8rpx;
+  height: 40rpx;
+  background-color: #F8C857; /* */
+  border-top-right-radius: 4rpx;
+  border-bottom-right-radius: 4rpx;
+}
+
+/* --- 右侧内容 --- */
+.content-area {
+  flex: 1;
+  background-color: #ffffff; /* */
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+
+.header-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 30rpx;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  height: 150rpx; /* */
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.file-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: white;
+  font-weight: bold;
+  margin-right: 20rpx;
+}
+/* 简单的图标颜色模拟 */
+.file-icon.PDF { background-color: #FF4D4F; }
+.file-icon.MP4 { background-color: #405BFF; }
+.file-icon.PPT { background-color: #FF7A45; }
+
+.file-info {
+  flex: 1;
+}
+
+.file-name {
+  font-size: 30rpx; /* */
+  color: #333333;
+  margin-bottom: 10rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.file-meta {
+  font-size: 24rpx; /* */
+  color: #999999;
+}
+
+.download-btn {
+  color: #ccc;
+  font-size: 30rpx;
+}
+
+.empty-tip {
+  text-align: center;
+  color: #ccc;
+  font-size: 24rpx;
+  margin-top: 50rpx;
+}
