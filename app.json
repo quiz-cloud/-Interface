@@ -4,7 +4,12 @@
     "pages/appointment/appointment",
     "pages/home/home",
     "pages/chat/chat",
-    "pages/profile/profile"
+    "pages/profile/profile",
+    "pages/material/material",
+    "pages/safety/safety",
+    "pages/leave/leave",
+    "pages/project-dispersed/project-dispersed",
+    "pages/team-dispersed/team-dispersed"
   ],
   "window": {
     "backgroundTextStyle": "light",
