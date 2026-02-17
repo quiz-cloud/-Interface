@@ -58,5 +58,23 @@ Page({
     wx.switchTab({
       url: "/pages/index/index"
     });
+  },
+
+  // 以下是为新按钮添加的占位事件处理函数
+
+  goToConcentratedDocs() {
+    wx.navigateTo({ url: '/pages/material/material' });
+  },
+
+  goToLeaveRequest() {
+    wx.navigateTo({ url: '/pages/leave/leave' });
+  },
+
+  goToDispersedProject() {
+    wx.navigateTo({ url: '/pages/project-dispersed/project-dispersed' });
+  },
+
+  goToDispersedTeam() {
+    wx.navigateTo({ url: '/pages/team-dispersed/team-dispersed' });
   }
 });

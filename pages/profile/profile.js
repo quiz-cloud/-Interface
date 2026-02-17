@@ -1,66 +1,41 @@
 // pages/profile/profile.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    // 模拟的用户信息
+    user: {
+      nickname: "创新实践者",
+      studentId: "20240017",
+      avatar: "/images/avatar-placeholder.png" // 建议在/images目录下放置一张占位图
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
-
+    // 页面加载时可以从全局或缓存中获取真实用户信息
+    // wx.getStorage({ key: 'userInfo' }).then(res => this.setData({ user: res.data }));
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 处理操作列表点击事件
    */
-  onReady() {
-
+  handleAction(e) {
+    const action = e.currentTarget.dataset.action;
+    const titleMap = {
+      help: "帮助中心",
+      feedback: "意见反馈",
+      about: "关于我们"
+    };
+    wx.showToast({
+      title: `${titleMap[action] || '该功能'}待接入`,
+      icon: 'none'
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+    // 设置tabBar选中状态
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 4 // 个人中心在tabBar中的索引
+      });
+    }
   }
-})
+});

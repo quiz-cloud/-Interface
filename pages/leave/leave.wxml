@@ -1,0 +1,51 @@
+<!--pages/leave/leave.wxml-->
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">请假与补课申请</text>
+    <text class="page-subtitle">Leave and Make-up Class Application</text>
+  </view>
+
+  <form bindsubmit="submitApplication">
+    <view class="form-card">
+      <!-- 申请类型 -->
+      <view class="form-item">
+        <text class="item-label">申请类型</text>
+        <picker class="item-picker" bindchange="onTypeChange" value="{{typeIndex}}" range="{{types}}">
+          <view class="picker-content">
+            <text>{{types[typeIndex]}}</text>
+            <text class="arrow">></text>
+          </view>
+        </picker>
+      </view>
+
+      <!-- 请假日期 -->
+      <view class="form-item">
+        <text class="item-label">请假日期</text>
+        <picker class="item-picker" mode="date" value="{{date}}" start="2024-01-01" end="2025-12-31" bindchange="onDateChange">
+          <view class="picker-content">
+            <text>{{date}}</text>
+            <text class="arrow">></text>
+          </view>
+        </picker>
+      </view>
+
+      <!-- 请假理由 -->
+      <view class="form-item-vertical">
+        <text class="item-label">请假理由</text>
+        <textarea class="item-textarea" name="reason" placeholder="请输入详细的请假事由" maxlength="200"></textarea>
+      </view>
+
+      <!-- 补课安排 -->
+      <view class="form-item-vertical" wx:if="{{typeIndex == 1}}">
+        <text class="item-label">补课安排建议</text>
+        <textarea class="item-textarea" name="makeupSuggestion" placeholder="请输入您期望的补课时间或方案" maxlength="200"></textarea>
+      </view>
+    </view>
+
+    <button class="submit-btn" form-type="submit">提交申请</button>
+  </form>
+
+  <view class="history-link" bindtap="viewHistory">
+    <text>查看历史申请</text>
+  </view>
+</view>

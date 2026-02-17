@@ -1,0 +1,45 @@
+<!--pages/team-dispersed/team-dispersed.wxml-->
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">分散项目组队</text>
+    <text class="page-subtitle">Dispersed Project Teaming</text>
+  </view>
+
+  <!-- 我的队伍 -->
+  <view class="my-team-card">
+    <view class="card-header">
+      <text class="card-title">我的队伍</text>
+      <button class="manage-btn" size="mini" bindtap="manageTeam">管理</button>
+    </view>
+    <view class="team-info">
+      <text class="project-name">项目：{{myTeam.projectName}}</text>
+      <view class="member-list">
+        <view class="member-item" wx:for="{{myTeam.members}}" wx:key="index">
+          <image class="avatar" src="{{item.avatar}}" />
+          <text class="nickname">{{item.name}}</text>
+          <text class="role">{{item.role}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 寻找队伍 -->
+  <view class="find-team-section">
+    <view class="section-header">
+      <text class="section-title">寻找队伍</text>
+    </view>
+    <view class="team-list">
+      <view class="team-card" wx:for="{{availableTeams}}" wx:key="index">
+        <view class="team-header">
+          <text class="team-project">{{item.projectName}}</text>
+          <text class="team-status">{{item.memberCount}} / {{item.maxMembers}}</text>
+        </view>
+        <text class="team-desc">{{item.description}}</text>
+        <view class="team-footer">
+          <text class="captain-info">队长: {{item.captain}}</text>
+          <button class="join-btn" size="mini" bindtap="joinTeam" data-index="{{index}}">申请加入</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,27 @@
+<!--pages/project-dispersed/project-dispersed.wxml-->
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">分散项目资料</text>
+    <text class="page-subtitle">Dispersed Project Materials</text>
+  </view>
+
+  <view class="project-list">
+    <view class="project-card" wx:for="{{projects}}" wx:key="index" bindtap="viewProject" data-index="{{index}}" hover-class="card-hover">
+      <view class="card-header">
+        <text class="card-title">{{item.title}}</text>
+        <view class="status-tag {{item.statusClass}}">{{item.statusText}}</view>
+      </view>
+      <text class="card-desc">{{item.description}}</text>
+      <view class="card-footer">
+        <view class="footer-item">
+          <image class="footer-icon" src="/images/icon-teacher.png" />
+          <text class="footer-text">指导老师: {{item.instructor}}</text>
+        </view>
+        <view class="footer-item">
+          <image class="footer-icon" src="/images/icon-clock.png" />
+          <text class="footer-text">建议周期: {{item.duration}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

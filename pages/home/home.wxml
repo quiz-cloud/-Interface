@@ -66,8 +66,8 @@
     </view>
 
     <view class="action-row">
-      <view class="action-btn" bindtap="goToPlaceholder" data-title="工种资料">工种资料</view>
-      <view class="action-btn" bindtap="goToPlaceholder" data-title="请假补课">请假补课</view>
+      <view class="action-btn" bindtap="goToConcentratedDocs">工种资料</view>
+      <view class="action-btn" bindtap="goToLeaveRequest">请假补课</view>
     </view>
   </view>
 
@@ -115,8 +115,8 @@
     </view>
 
     <view class="action-row">
-      <view class="action-btn" bindtap="goToPlaceholder" data-title="分散项目">分散项目</view>
-      <view class="action-btn" bindtap="goToPlaceholder" data-title="分散组队">分散组队</view>
+      <view class="action-btn" bindtap="goToDispersedProject">分散项目</view>
+      <view class="action-btn" bindtap="goToDispersedTeam">分散组队</view>
     </view>
   </view>
 </view>

@@ -1,1 +1,83 @@
 /* pages/profile/profile.wxss */
+.container {
+  padding: 24rpx;
+  background-color: #f4f5f7;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* 用户信息卡片 */
+.profile-card {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 40rpx;
+  border-radius: 16rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-right: 32rpx;
+  background-color: #e9e9e9;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.nickname {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.id-info {
+  font-size: 28rpx;
+  color: #888;
+}
+
+
+
+.arrow {
+  font-family: sans-serif;
+  margin-left: 8rpx;
+  font-weight: bold;
+}
+
+/* 列表卡片通用样式 */
+.action-list-card {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  padding: 16rpx 32rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+
+
+/* 操作列表 */
+.action-list-card {
+  padding: 0 32rpx;
+}
+
+.action-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.action-item:last-child {
+  border-bottom: none;
+}
+
+.action-text {
+  font-size: 30rpx;
+  color: #333;
+}

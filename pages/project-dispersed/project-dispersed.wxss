@@ -1,0 +1,100 @@
+/* pages/project-dispersed/project-dispersed.wxss */
+.container {
+  padding: 24rpx;
+  background-color: #f4f5f7;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.page-header {
+  margin-bottom: 32rpx;
+  padding: 0 16rpx;
+}
+
+.page-title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+}
+
+.page-subtitle {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.project-card {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.project-card:active {
+  background-color: #fafafa;
+}
+
+.card-hover {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* 顶部对齐 */
+  margin-bottom: 16rpx;
+}
+
+.card-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333;
+  flex: 1; /* 占据更多空间 */
+}
+
+.status-tag {
+  font-size: 24rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 30rpx; /* 更圆的角 */
+  font-weight: 500;
+  margin-left: 20rpx; /* 与标题拉开距离 */
+  white-space: nowrap; /* 防止文字换行 */
+}
+
+.status-open {
+  color: #ffffff;
+  background-color: #07c160;
+}
+
+.status-closed {
+  color: #ffffff;
+  background-color: #aaaaaa;
+}
+
+.card-desc {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 24rpx;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 26rpx;
+  color: #999;
+  align-items: center; /* 垂直居中 */
+}
+
+.footer-item {
+  display: flex;
+  align-items: center;
+}
+
+.footer-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 12rpx;
+}
