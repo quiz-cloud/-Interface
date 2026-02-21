@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/index/index",
     "pages/appointment/appointment",
     "pages/home/home",
@@ -9,7 +10,9 @@
     "pages/safety/safety",
     "pages/leave/leave",
     "pages/project-dispersed/project-dispersed",
-    "pages/team-dispersed/team-dispersed"
+    "pages/team-dispersed/team-dispersed",
+    "pages/notices/notices"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,53 @@
+<!--pages/notices/notices.wxml-->
+<view class="notices-container">
+ 
+
+  <view class="content-body" >
+    <view class="calendar-section">
+      <view class="date-info-row">
+        <text class="current-date">{{displayDate}}</text>
+        <text class="week-num">第15周 周一</text>
+      </view>
+      
+      <view class="week-calendar">
+       <view class="week-day" wx:for="{{weekDays}}" wx:key="fullDate" bindtap="selectDate" 
+       data-date="{{item.fullDate}}">
+          <text class="day-label">{{item.label}}</text>
+          <view class="date-circle {{selectedDate === item.fullDate ? 'active' : ''}}">
+            <text>{{item.day}}</text>
+            <view class="event-dot" wx:if="{{item.hasEvent}}"></view>
+          </view>
+        </view>
+      </view>
+      
+      <view class="expand-btn">
+        <text>展开</text>
+        <text class="arrow-down">⌄</text>
+      </view>
+    </view>
+
+    <view class="filter-bar">
+      <view class="filter-item">全部通知 ⌄</view>
+      <view class="filter-item">截至日期 ⇅</view>
+    </view>
+
+    <scroll-view scroll-y class="notice-list">
+      <view class="notice-card" wx:for="{{notices}}" wx:key="id">
+        <view class="card-header">
+          <view class="status-box">
+            <view class="status-dot {{item.status === 'completed' ? 'green' : 'red'}}"></view>
+            <text class="status-text">{{item.statusText}}</text>
+          </view>
+          <text class="deadline">截至日期 {{item.deadline}}</text>
+        </view>
+        
+        <view class="card-title">{{item.title}}</view>
+        
+        <view class="card-footer" bindtap="viewDetail" data-id="{{item.id}}">
+          <text>查看详情</text>
+          <text class="arrow-down">⌄</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

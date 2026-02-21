@@ -88,11 +88,11 @@ Page({
     const page = e.currentTarget.dataset.page;
     const routes = {
       intro: '/pages/course/intro',
-      safety: '/pages/course/safety',
-      materials: '/pages/course/materials',
+      safety: '/pages/safety/safety',
+      material: '/pages/material/material',
       leave: '/pages/leave/leave',
-      project: '/pages/project/project',
-      team: '/pages/team/team',
+      project: '/pages/project-dispersed/project-dispersed',
+      team: '/pages/team-dispersed/team-dispersed',
       process: '/pages/process/process',
       report: '/pages/report/report'
     };

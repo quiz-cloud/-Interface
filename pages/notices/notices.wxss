@@ -1,0 +1,140 @@
+/* pages/notices/notices.wxss */
+.notices-container {
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+/* 确保主体内容没有顶部外边距 */
+.content-body {
+  margin-top: 0;
+}
+
+/* 日历区域：背景色与原生导航栏保持一致 */
+.calendar-section {
+  background-color: #F8C857;
+  padding: 20rpx 30rpx;
+}
+
+.date-info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.week-calendar {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20rpx;
+}
+
+.week-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.day-label {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.date-circle {
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  border-radius: 50%;
+  position: relative;
+}
+
+.date-circle.active {
+  background-color: #3B5CF0;
+  color: #fff;
+}
+
+.event-dot {
+  width: 8rpx;
+  height: 8rpx;
+  background-color: #ff4d4f;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -4rpx;
+}
+
+.expand-btn {
+  text-align: center;
+  font-size: 24rpx;
+  color: #888;
+  padding-bottom: 10rpx;
+}
+
+.filter-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 30rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.filter-item {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.notice-list {
+  padding: 20rpx 30rpx;
+  /* 调整高度计算以适应原生导航栏 */
+  height: calc(100vh - 350rpx);
+}
+
+.notice-card {
+  width: 690rpx;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  box-sizing: border-box;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.08);
+  margin-bottom: 30rpx;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.status-box {
+  display: flex;
+  align-items: center;
+}
+
+.status-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  margin-right: 12rpx;
+}
+
+.status-dot.red { background-color: #ff4d4f; }
+.status-dot.green { background-color: #52c41a; }
+.status-text { font-size: 28rpx; color: #999; }
+.deadline { font-size: 26rpx; color: #999; }
+
+.card-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 40rpx;
+  line-height: 1.4;
+}
+
+.card-footer {
+  text-align: center;
+  font-size: 28rpx;
+  color: #bbb;
+}

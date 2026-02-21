@@ -126,7 +126,7 @@
       <text class="btn-text">安全须知</text>
     </button>
     
-    <button class="func-btn" bindtap="navigateTo" data-page="materials">
+    <button class="func-btn" bindtap="navigateTo" data-page="material">
       <view class="btn-icon blue">📋</view>
       <text class="btn-text">工种资料</text>
     </button>
