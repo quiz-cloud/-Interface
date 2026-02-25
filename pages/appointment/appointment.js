@@ -17,33 +17,33 @@ const CATEGORY_CONFIG = [
     name: "激光切割",
     deviceOptions: ["全部设备", "激光切割机"],
     machines: [
-      { name: "激光切割机 1", slots: DEFAULT_SLOTS },
-      { name: "激光切割机 2", slots: DEFAULT_SLOTS },
-      { name: "激光切割机 3", slots: DEFAULT_SLOTS }
+      { name: "激光切割机 1", slots: DEFAULT_SLOTS, imageUrl:"/images/machines/LaserCuttingMachine.png" },
+      { name: "激光切割机 2", slots: DEFAULT_SLOTS, imageUrl:"/images/machines/LaserCuttingMachine.png" },
+      { name: "激光切割机 3", slots: DEFAULT_SLOTS, imageUrl:"/images/machines/LaserCuttingMachine.png" }
     ]
   },
   {
     name: "3D打印",
     deviceOptions: ["全部设备", "3D打印机"],
     machines: [
-      { name: "3D打印机 1", slots: DEFAULT_SLOTS },
-      { name: "3D打印机 2", slots: DEFAULT_SLOTS }
+      { name: "3D打印机 1", slots: DEFAULT_SLOTS, imageUrl:"/images/machines/3DPrinter.png" },
+      { name: "3D打印机 2", slots: DEFAULT_SLOTS, imageUrl:"/images/machines/3DPrinter.png" }
     ]
   },
   {
     name: "电子工艺",
     deviceOptions: ["全部设备", "电子工艺"],
     machines: [
-      { name: "电子工艺设备 1", slots: DEFAULT_SLOTS },
-      { name: "电子工艺设备 2", slots: DEFAULT_SLOTS }
+      { name: "电子工艺设备 1", slots: DEFAULT_SLOTS, imageUrl:"/images/machines/electronicProcessingEquipment.png" },
+      { name: "电子工艺设备 2", slots: DEFAULT_SLOTS, imageUrl:"/images/machines/electronicProcessingEquipment.png" }
     ]
   },
   {
     name: "基础实训",
     deviceOptions: ["全部设备", "基础实训"],
     machines: [
-      { name: "基础实训设备 1", slots: DEFAULT_SLOTS },
-      { name: "基础实训设备 2", slots: DEFAULT_SLOTS }
+      { name: "基础实训设备 1", slots: DEFAULT_SLOTS, imageUrl:"/images/machines/basicTrainingEquipment.png" },
+      { name: "基础实训设备 2", slots: DEFAULT_SLOTS, imageUrl:"/images/machines/basicTrainingEquipment.png" }
     ]
   }
 ];

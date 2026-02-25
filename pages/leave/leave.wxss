@@ -1,7 +1,7 @@
 /* pages/leave/leave.wxss */
 .container {
   padding: 24rpx;
-  background-color: #f4f5f7;
+  background-color: #fff3e0;
   min-height: 100vh;
   box-sizing: border-box;
 }
@@ -84,6 +84,68 @@
   padding: 16rpx;
   border-radius: 8rpx;
   box-sizing: border-box;
+}
+
+/* 请假凭证上传区域 */
+.upload-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx;
+  margin-top: 20rpx;
+}
+
+.uploaded-img {
+  position: relative;
+  width: 160rpx;
+  height: 160rpx;
+  border: 1px solid #eee;
+  border-radius: 8rpx;
+  overflow: hidden;
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.uploaded-img image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.delete-img {
+  position: absolute;
+  top: 0rpx;
+  right: 0rpx;
+  width: 32rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  background-color: #ff4d4f;
+  color: #ffffff;
+  border-radius: 50%;
+  font-size: 20rpx;
+  font-weight: bold;
+  z-index: 999;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.15);
+}
+
+.upload-btn {
+  width: 160rpx;
+  height: 160rpx;
+  line-height: 160rpx;
+  text-align: center;
+  border: 1px dashed #ccc;
+  background: #f9f9f9;
+  color: #666;
+  font-size: 24rpx;
+  padding: 0;
+  border-radius: 8rpx;
+}
+
+.tips-text {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #999;
 }
 
 .submit-btn {

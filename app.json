@@ -28,23 +28,33 @@
     "list": [
       {
         "pagePath": "pages/home/home",
-        "text": "课表"
+        "text": "课表",
+        "iconPath": "/images/tabBarIcon/home_unselected.png",
+        "selectedIconPath": "/images/tabBarIcon/home_selected.png"
       },
       {
         "pagePath": "pages/appointment/appointment",
-        "text": "加工预约"
+        "text": "加工预约",
+        "iconPath": "/images/tabBarIcon/appointment_unselected.png",
+        "selectedIconPath": "/images/tabBarIcon/appointment_selected.png"
       },
       {
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "首页",
+        "iconPath": "/images/tabBarIcon/index_unselected.png",
+        "selectedIconPath": "/images/tabBarIcon/index_selected.png"
       },
       {
         "pagePath": "pages/chat/chat",
-        "text": "交流区"
+        "text": "交流区",
+        "iconPath": "/images/tabBarIcon/chat_unselected.png",
+        "selectedIconPath": "/images/tabBarIcon/chat_selected.png"
       },
       {
         "pagePath": "pages/profile/profile",
-        "text": "我的"
+        "text": "我的",
+        "iconPath": "/images/tabBarIcon/profile_unselected.png",
+        "selectedIconPath": "/images/tabBarIcon/profile_selected.png"
       }
     ]
   },

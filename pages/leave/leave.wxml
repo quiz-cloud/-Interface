@@ -42,6 +42,19 @@
         <textarea class="item-textarea" name="reason" placeholder="请输入详细的请假事由" maxlength="200"></textarea>
       </view>
 
+      <!-- 请假凭证上传-->
+      <view class="form-item-vertical" wx:if="{{typeIndex == 0}}">
+        <text class="item-label">请假凭证</text>
+        <view class="upload-area">
+          <view class="uploaded-img" wx:for="{{proofImages}}" wx:key="index">
+            <image src="{{item}}" mode="aspectFill"></image>
+            <text class="delete-img" bindtap="deleteImage" data-index="{{index}}">×</text>
+          </view>
+          <button class="upload-btn" bindtap="chooseImage">+ 上传假条/证明图片</button>
+        </view>
+        <text class="tips-text">最多上传3张，支持jpg/png格式</text>
+      </view>
+
       <!-- 补课安排 -->
       <view class="form-item-vertical" wx:if="{{typeIndex == 1}}">
         <text class="item-label">补课安排建议</text>
