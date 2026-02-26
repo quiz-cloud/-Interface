@@ -1,6 +1,6 @@
 .page {
   padding: 24rpx 24rpx 60rpx;
-  background-color: #f7efe3;
+  background-color: #fbf4e6;
   min-height: 100vh;
   box-sizing: border-box;
 }

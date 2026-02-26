@@ -42,10 +42,14 @@
         <textarea class="item-textarea" name="reason" placeholder="请输入详细的请假事由" maxlength="200"></textarea>
       </view>
 
-      <!-- 补课安排 -->
-      <view class="form-item-vertical" wx:if="{{typeIndex == 1}}">
-        <text class="item-label">补课安排建议</text>
-        <textarea class="item-textarea" name="makeupSuggestion" placeholder="请输入您期望的补课时间或方案" maxlength="200"></textarea>
+      <!-- 请假凭证 -->
+      <view class="form-item-vertical">
+        <text class="item-label">请假凭证</text>
+        <view class="upload-box">
+          <button class="upload-btn" bindtap="chooseCertificate">上传导员请假条</button>
+          <image wx:if="{{certificateUrl}}" class="upload-preview" src="{{certificateUrl}}" mode="aspectFill" />
+          <text wx:if="{{certificateUrl}}" class="upload-tip">已选择，请确保清晰可见</text>
+        </view>
       </view>
     </view>
 

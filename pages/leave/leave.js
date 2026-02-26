@@ -4,8 +4,9 @@ Page({
     types: ["普通请假", "请假并补课"],
     typeIndex: 0,
     date: "",
-  startDate: "", // 动态开始日期
-  endDate: ""    // 动态结束日期
+    startDate: "", // 动态开始日期
+    endDate: "",    // 动态结束日期
+    certificateUrl: ""
   },
 
   onLoad(options) {
@@ -14,8 +15,8 @@ Page({
     const month = String(today.getMonth() + 1).padStart(2, '0');
     const day = String(today.getDate()).padStart(2, '0');
     const formatDate = `${year}-${month}-${day}`;
-  
-    this.setData({ 
+
+    this.setData({
       date: formatDate,
       startDate: formatDate, // 限制只能从今天开始选择
       endDate: `${year + 1}-${month}-${day}` // 自动推导一年后的日期为终点
@@ -31,6 +32,22 @@ Page({
   onDateChange(e) {
     this.setData({
       date: e.detail.value
+    });
+  },
+
+  chooseCertificate() {
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      success: (res) => {
+        const [tempFilePath] = res.tempFilePaths || [];
+        if (tempFilePath) {
+          this.setData({
+            certificateUrl: tempFilePath
+          });
+        }
+      }
     });
   },
 

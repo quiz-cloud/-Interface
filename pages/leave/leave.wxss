@@ -1,7 +1,7 @@
 /* pages/leave/leave.wxss */
 .container {
   padding: 24rpx;
-  background-color: #f4f5f7;
+  background-color: #fbf4e6;
   min-height: 100vh;
   box-sizing: border-box;
 }
@@ -73,6 +73,36 @@
 
 .form-item-vertical .item-label {
   margin-bottom: 20rpx;
+}
+
+.upload-box {
+  width: 100%;
+  background-color: #f9f9f9;
+  border-radius: 8rpx;
+  padding: 16rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.upload-btn {
+  background-color: #ffffff;
+  color: #333;
+  font-size: 28rpx;
+  border: 1rpx dashed #d9d9d9;
+}
+
+.upload-preview {
+  width: 100%;
+  height: 260rpx;
+  border-radius: 8rpx;
+  background-color: #ffffff;
+}
+
+.upload-tip {
+  font-size: 24rpx;
+  color: #999;
 }
 
 .item-textarea {
