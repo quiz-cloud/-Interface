@@ -9,6 +9,10 @@ const I18N = {
     language: "切换语言",
     changePassword: "修改密码",
     logout: "退出登录",
+    login: "去登录",
+    loggedOutTitle: "未登录",
+    loggedOutSubtitle: "登录后查看个人信息",
+    loginTip: "登录功能待接入",
     logoutConfirmTitle: "确认退出登录",
     logoutConfirmContent: "退出后将清除本地缓存信息。",
     logoutCanceled: "已取消",
@@ -25,6 +29,10 @@ const I18N = {
     language: "Language",
     changePassword: "Change Password",
     logout: "Log Out",
+    login: "Sign In",
+    loggedOutTitle: "Not signed in",
+    loggedOutSubtitle: "Sign in to view your profile",
+    loginTip: "Sign-in coming soon",
     logoutConfirmTitle: "Confirm Log Out",
     logoutConfirmContent: "Local data will be cleared after logging out.",
     logoutCanceled: "Canceled",
@@ -42,6 +50,7 @@ Page({
       studentId: "20240017",
       avatar: "/images/avatar-placeholder.png" // 建议在/images目录下放置一张占位图
     },
+    isLoggedIn: true,
     langOptions: [
       { label: "中文", value: "zh" },
       { label: "English", value: "en" }
@@ -56,9 +65,7 @@ Page({
     const index = this.data.langOptions.findIndex(item => item.value === savedLang);
     const langIndex = index >= 0 ? index : 0;
     this.applyLanguage(this.data.langOptions[langIndex].value, langIndex);
-
-    // 页面加载时可以从全局或缓存中获取真实用户信息
-    // wx.getStorage({ key: 'userInfo' }).then(res => this.setData({ user: res.data }));
+    this.syncAuthState();
   },
 
   applyLanguage(lang, langIndex) {
@@ -103,6 +110,13 @@ Page({
     });
   },
 
+  handleLogin() {
+    wx.showToast({
+      title: this.data.t.loginTip,
+      icon: "none"
+    });
+  },
+
   handleLogout() {
     wx.showModal({
       title: this.data.t.logoutConfirmTitle,
@@ -110,9 +124,15 @@ Page({
       confirmColor: "#f7b400",
       success: (res) => {
         if (res.confirm) {
+          const currentLang = this.data.currentLang;
           wx.clearStorageSync();
+          wx.setStorageSync("profileLang", currentLang);
+          wx.setStorageSync("isLoggedIn", false);
+          this.setData({
+            isLoggedIn: false
+          });
           wx.reLaunch({
-            url: "/pages/home/home"
+            url: "/pages/profile/profile"
           });
           return;
         }
@@ -124,7 +144,27 @@ Page({
     });
   },
 
+  syncAuthState() {
+    const storedUser = wx.getStorageSync("userInfo");
+    const logoutFlag = wx.getStorageSync("isLoggedIn");
+    const isLoggedIn = logoutFlag !== false;
+    if (storedUser && typeof storedUser === "object") {
+      this.setData({
+        user: {
+          ...this.data.user,
+          ...storedUser
+        },
+        isLoggedIn
+      });
+      return;
+    }
+    this.setData({
+      isLoggedIn
+    });
+  },
+
   onShow() {
+    this.syncAuthState();
     // 设置tabBar选中状态
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
