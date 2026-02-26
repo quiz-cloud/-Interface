@@ -7,7 +7,7 @@ page {
   --gray: #999999;
   --light-gray: #F5F5F5;
   --border-radius: 16rpx;
-  background-color: #F8F8F8;
+  background-color: #fbf4e6;
 }
 
 /* 自定义导航栏 */
