@@ -111,9 +111,8 @@ Page({
   },
 
   handleLogin() {
-    wx.showToast({
-      title: this.data.t.loginTip,
-      icon: "none"
+    wx.navigateTo({
+      url: "/pages/login/login"
     });
   },
 

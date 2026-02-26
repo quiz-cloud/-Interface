@@ -1,0 +1,73 @@
+/* pages/login/login.wxss */
+.page {
+  min-height: 100vh;
+  background-color: #fbf4e6;
+  padding: 32rpx 28rpx;
+  box-sizing: border-box;
+}
+
+.header {
+  padding: 20rpx 8rpx 32rpx;
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #2a2a2a;
+  display: block;
+}
+
+.subtitle {
+  font-size: 26rpx;
+  color: #8a8a8a;
+  margin-top: 8rpx;
+}
+
+.card {
+  background-color: #fff7e7;
+  border-radius: 18rpx;
+  padding: 24rpx;
+  box-shadow: 0 4rpx 12rpx rgba(247, 180, 0, 0.12);
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #f2e5c8;
+}
+
+.form-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.label {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.input {
+  background-color: #ffffff;
+  border-radius: 10rpx;
+  padding: 16rpx;
+  font-size: 30rpx;
+  color: #2a2a2a;
+}
+
+.submit-btn {
+  margin-top: 28rpx;
+  background-color: #f7b400;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 600;
+  border-radius: 28rpx;
+}
+
+.hint {
+  margin-top: 24rpx;
+  text-align: center;
+  color: #999;
+  font-size: 24rpx;
+}
