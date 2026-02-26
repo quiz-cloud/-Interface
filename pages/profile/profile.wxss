@@ -1,7 +1,7 @@
 /* pages/profile/profile.wxss */
 .container {
   padding: 24rpx;
-  background-color: #f4f5f7;
+  background-color: #fbf4e6;
   min-height: 100vh;
   box-sizing: border-box;
 }
@@ -10,11 +10,11 @@
 .profile-card {
   display: flex;
   align-items: center;
-  background-color: #ffffff;
+  background-color: #fff7e7;
   padding: 40rpx;
   border-radius: 16rpx;
   margin-bottom: 24rpx;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4rpx 12rpx rgba(247, 180, 0, 0.12);
 }
 
 .avatar {
@@ -33,13 +33,13 @@
 .nickname {
   font-size: 40rpx;
   font-weight: bold;
-  color: #333;
+  color: #2a2a2a;
   margin-bottom: 8rpx;
 }
 
 .id-info {
   font-size: 28rpx;
-  color: #888;
+  color: #666;
 }
 
 
@@ -52,10 +52,11 @@
 
 /* 列表卡片通用样式 */
 .action-list-card {
-  background-color: #ffffff;
+  background-color: #fff7e7;
   border-radius: 16rpx;
   padding: 16rpx 32rpx;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4rpx 12rpx rgba(247, 180, 0, 0.12);
+  margin-bottom: 24rpx;
 }
 
 
@@ -70,7 +71,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 32rpx 0;
-  border-bottom: 1rpx solid #f0f0f0;
+  border-bottom: 1rpx solid #f2e5c8;
 }
 
 .action-item:last-child {
@@ -79,5 +80,28 @@
 
 .action-text {
   font-size: 30rpx;
-  color: #333;
+  color: #2a2a2a;
+}
+
+.action-picker {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.action-value {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  color: #666;
+  font-size: 28rpx;
+}
+
+.action-value-text {
+  color: inherit;
+}
+
+.action-item.danger .action-text,
+.action-item.danger .arrow {
+  color: #cc4c54;
 }

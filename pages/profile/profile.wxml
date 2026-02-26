@@ -5,22 +5,49 @@
     <image class="avatar" src="/images/avatar-placeholder.png" mode="aspectFill"></image>
     <view class="user-info">
       <text class="nickname">{{user.nickname}}</text>
-      <text class="id-info">学号: {{user.studentId}}</text>
+      <text class="id-info">{{t.studentId}}: {{user.studentId}}</text>
     </view>
   </view>
 
   <!-- 操作列表 -->
   <view class="action-list-card">
     <view class="action-item" bindtap="handleAction" data-action="help">
-      <text class="action-text">帮助中心</text>
+      <text class="action-text">{{t.help}}</text>
       <text class="arrow">></text>
     </view>
     <view class="action-item" bindtap="handleAction" data-action="feedback">
-      <text class="action-text">意见反馈</text>
+      <text class="action-text">{{t.feedback}}</text>
       <text class="arrow">></text>
     </view>
     <view class="action-item" bindtap="handleAction" data-action="about">
-      <text class="action-text">关于我们</text>
+      <text class="action-text">{{t.about}}</text>
+      <text class="arrow">></text>
+    </view>
+  </view>
+
+  <view class="action-list-card">
+    <view class="action-item">
+      <text class="action-text">{{t.language}}</text>
+      <picker
+        class="action-picker"
+        mode="selector"
+        range="{{langOptions}}"
+        range-key="label"
+        value="{{langIndex}}"
+        bindchange="handleLanguageChange"
+      >
+        <view class="action-value">
+          <text class="action-value-text">{{langOptions[langIndex].label}}</text>
+          <text class="arrow">></text>
+        </view>
+      </picker>
+    </view>
+    <view class="action-item" bindtap="handleChangePassword">
+      <text class="action-text">{{t.changePassword}}</text>
+      <text class="arrow">></text>
+    </view>
+    <view class="action-item danger" bindtap="handleLogout">
+      <text class="action-text">{{t.logout}}</text>
       <text class="arrow">></text>
     </view>
   </view>
