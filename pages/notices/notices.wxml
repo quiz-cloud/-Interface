@@ -4,27 +4,42 @@
 
   <view class="content-body" >
     <view class="calendar-section">
-      <view class="date-info-row">
-        <text class="current-date">{{displayDate}}</text>
-        <text class="week-num">第15周 周一</text>
-      </view>
-      
-      <view class="week-calendar">
-       <view class="week-day" wx:for="{{weekDays}}" wx:key="fullDate" bindtap="selectDate" 
-       data-date="{{item.fullDate}}">
-          <text class="day-label">{{item.label}}</text>
-          <view class="date-circle {{selectedDate === item.fullDate ? 'active' : ''}}">
-            <text>{{item.day}}</text>
-            <view class="event-dot" wx:if="{{item.hasEvent}}"></view>
-          </view>
-        </view>
-      </view>
-      
-      <view class="expand-btn">
-        <text>展开</text>
-        <text class="arrow-down">⌄</text>
+  <view class="date-info-row">
+    <text class="current-date">{{isExpanded ? currentMonthStr : displayDate}}</text>
+    <text class="week-num" wx:if="{{!isExpanded}}">第15周 周一</text>
+  </view>
+  
+  <view class="week-calendar" wx:if="{{!isExpanded}}">
+    <view class="week-day" wx:for="{{weekDays}}" wx:key="fullDate" bindtap="selectDate" data-date="{{item.fullDate}}">
+      <text class="day-label">{{item.label}}</text>
+      <view class="date-circle {{selectedDate === item.fullDate ? 'active' : ''}}">
+        <text>{{item.day}}</text>
+        <view class="event-dot" wx:if="{{item.hasEvent}}"></view>
       </view>
     </view>
+  </view>
+
+  <view class="month-calendar" wx:else>
+    <view class="month-header">
+      <text wx:for="{{['一','二','三','四','五','六','日']}}" wx:key="*this">{{item}}</text>
+    </view>
+    <view class="month-body">
+      <view class="month-day {{item.isCurrentMonth ? '' : 'empty'}}" 
+            wx:for="{{monthDays}}" wx:key="index"
+            bindtap="{{item.fullDate ? 'selectDate' : ''}}" data-date="{{item.fullDate}}">
+        <view class="date-circle {{selectedDate === item.fullDate ? 'active' : ''}}">
+          <text>{{item.day}}</text>
+          <view class="event-dot" wx:if="{{item.hasEvent}}"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="expand-btn" bindtap="toggleExpand">
+    <text>{{isExpanded ? '收起' : '展开'}}</text>
+    <text class="arrow-down {{isExpanded ? 'rotate' : ''}}">⌄</text>
+  </view>
+</view>
 
     <view class="filter-bar">
       <view class="filter-item">全部通知 ⌄</view>

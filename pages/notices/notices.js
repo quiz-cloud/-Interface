@@ -9,14 +9,60 @@ Page({
       { id: 1, title: '观看木工安全教育视频', status: 'pending', statusText: '待完成', deadline: '12月04日 24:00' },
       { id: 2, title: '分散项目组队', status: 'pending', statusText: '待完成', deadline: '12月08日 24:00' },
       { id: 3, title: '实习报告提交', status: 'completed', statusText: '已完成', deadline: '01月15日 24:00' }
-    ]
+    ],
+    isExpanded: false, // 控制是否展开
+    monthDays: [],     // 存放月日历数据
+    currentMonthStr: '' // 用于显示当前的月份标题
   },
 
   onLoad() {
     const sysInfo = wx.getSystemInfoSync(); 
     this.setData({ statusBarHeight: sysInfo.statusBarHeight }); 
+    this.initCalendar();
+    this.initMonthCalendar(); // 初始化月日历数据
     
     this.initCalendar();
+  },
+  // 切换展开/收起
+  toggleExpand() {
+    this.setData({ isExpanded: !this.data.isExpanded });
+  },
+
+  initMonthCalendar() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    
+    // 获取本月第一天是周几 (0-6)
+    const firstDay = new Date(year, month, 1).getDay();
+    // 转换为周一为起始 (0-6)
+    const offset = firstDay === 0 ? 6 : firstDay - 1;
+    
+    // 获取本月最后一天
+    const lastDate = new Date(year, month + 1, 0).getDate();
+    
+    const monthDays = [];
+    
+    // 填充上月残留的空白 (可选，为了对齐周)
+    for (let i = 0; i < offset; i++) {
+      monthDays.push({ day: '', fullDate: '', isCurrentMonth: false });
+    }
+
+    // 填充本月日期
+    for (let i = 1; i <= lastDate; i++) {
+      const fullDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+      monthDays.push({
+        day: i.toString(),
+        fullDate: fullDate,
+        isCurrentMonth: true,
+        hasEvent: this.checkEvent(fullDate)
+      });
+    }
+
+    this.setData({ 
+      monthDays,
+      currentMonthStr: `${year}年${month + 1}月`
+    });
   },
 
   initCalendar() {
