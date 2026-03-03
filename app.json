@@ -4,6 +4,7 @@
     "pages/index/index",
     "pages/index/intro",
     "pages/appointment/appointment",
+    "pages/appointment/appoint",
     "pages/home/home",
     "pages/chat/chat",
     "pages/chat/publish",
