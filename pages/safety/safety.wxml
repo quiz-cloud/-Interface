@@ -1,0 +1,29 @@
+<view class="container">
+  <view class="nav-bar">
+    <view class="nav-title">安全协议</view>
+  </view>
+
+  <scroll-view scroll-y class="content-scroll">
+    <view class="article">
+      <view class="title">工程训练安全承诺书</view>
+      <view class="version">版本: 2026-V2.0</view>
+
+      <view class="section">
+        <text class="p">为保证工程创新训练课程的顺利进行，保障人身和设备安全，本人（学生）特做出如下承诺：</text>
+        <text class="p">一、 本人已认真阅读并知晓《工程训练中心学生实训守则》及相关工种的安全操作规程。</text>
+        <text class="p">二、 进入实训场地，<text class="highlight">必须穿着符合要求的工作服</text>，严禁穿拖鞋、凉鞋、高跟鞋、短裤、裙子进入车间。女生必须戴工作帽并将长发盘入帽内。</text>
+        <text class="p">三、 严格遵守操作规程，<text class="highlight">严禁擅自启动</text>不熟悉的机器设备。在设备运行过程中，严禁触摸旋转、移动部件。</text>
+        <text class="p">四、 爱护公物，不乱拿乱放工具、量具。实训结束后，必须清理机床和工作场地，将工具摆放整齐。</text>
+        <text class="p">五、 实训过程中如有身体不适或设备异常，应立即停止操作并向指导老师报告。</text>
+        <text class="p">六、 违反上述规定造成设备损坏或人身伤害者，由本人承担相应责任。</text>
+      </view>
+      <view style="height: 150rpx;"></view>
+    </view>
+  </scroll-view>
+
+  <view class="footer-bar">
+    <button class="confirm-btn {{canSubmit ? '' : 'disabled'}}" bindtap="onSubmit">
+      {{btnText}}
+    </button>
+  </view>
+</view>

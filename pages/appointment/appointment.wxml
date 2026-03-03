@@ -1,0 +1,99 @@
+<!--pages/appointment/appointment.wxml-->
+<view class="page">
+	<view class="banner">
+		<text class="banner-title">设备预约</text>
+	</view>
+
+	<view class="category-row">
+		<view
+			class="category-pill {{selectedCategoryIndex === index ? 'is-active' : ''}}"
+			wx:for="{{categories}}"
+			wx:key="index"
+			data-index="{{index}}"
+			bindtap="onCategoryTap"
+		>
+			{{item.name}}
+		</view>
+	</view>
+
+	<view class="filter-row">
+		<picker
+			class="device-picker"
+			mode="selector"
+			range="{{deviceOptions}}"
+			value="{{selectedDeviceIndex}}"
+			bindchange="onDeviceChange"
+		>
+			<view class="picker-content">
+				<text>{{deviceOptions[selectedDeviceIndex]}}</text>
+				<text class="picker-arrow">v</text>
+			</view>
+		</picker>
+	</view>
+
+	<view class="section">
+		<view class="section-title">
+			<text>{{categories[selectedCategoryIndex].name}} 预约日期</text>
+		</view>
+		<view class="date-row">
+			<view class="date-arrow"></view>
+			<view
+				class="date-card {{selectedDateIndex === index ? 'is-active' : ''}}"
+				wx:for="{{weekDates}}"
+				wx:key="index"
+				data-index="{{index}}"
+				bindtap="onDateTap"
+			>
+				<text class="date-num">{{item.date}}</text>
+				<text class="date-day">{{item.day}}</text>
+			</view>
+			<view class="date-arrow"></view>
+		</view>
+	</view>
+
+	<view class="machine-list">
+		<view class="machine-card" wx:for="{{machines}}" wx:key="index">
+			<view class="machine-image">
+				<text>设备图片</text>
+			</view>
+			<view class="machine-info">
+				<view class="machine-title-row">
+					<text class="machine-name">{{item.name}}</text>
+					<view class="reserve-btn" data-index="{{index}}" bindtap="onReserveTap">预 约</view>
+				</view>
+				<view class="time-bar">
+					<view
+						class="time-slot {{slot.status}}"
+						wx:for="{{item.slots}}"
+						wx:for-item="slot"
+						wx:key="index"
+					></view>
+				</view>
+				<view class="time-scale">
+					<text class="time-label" wx:for="{{timeLabels}}" wx:key="index">{{item}}</text>
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<view class="my-booking">
+		<text class="my-title">我的预约</text>
+		<view class="my-card">
+			<view class="my-info">
+				<text class="my-device">{{myBooking.name}}</text>
+				<view class="my-room">
+					<view class="room-dot"></view>
+					<text>{{myBooking.room}}</text>
+				</view>
+			</view>
+			<view class="my-time">
+				<text class="my-date">{{myBooking.date}}</text>
+				<text class="my-range">{{myBooking.time}}</text>
+			</view>
+			<view class="my-actions">
+				<view class="my-btn outline" data-action="edit" bindtap="onMyActionTap">加工文件修改</view>
+				<view class="my-btn" data-action="checkin" bindtap="onMyActionTap">报道</view>
+			</view>
+		</view>
+	</view>
+</view>

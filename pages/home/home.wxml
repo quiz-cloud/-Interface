@@ -1,0 +1,122 @@
+<view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
+  <view class="nav-content">
+    <view class="nav-back" bindtap="goBack">
+      <text class="back-icon">&lt;</text>
+    </view>
+    <text class="nav-title">全部课表</text>
+  </view>
+</view>
+
+<view class="page" style="padding-top: {{statusBarHeight + 44}}px;">
+  <!-- 集中实训 -->
+  <view class="section-card">
+    <view class="table">
+      <view class="row">
+        <view class="label-cell section-label concentrated">
+          <text>集中</text>
+          <text>实训</text>
+        </view>
+        <view class="row-content">
+          <view class="date-cell {{selectedConcentratedIndex == index ? 'is-selected' : ''}}" wx:for="{{concentratedDates}}" wx:key="index">
+            <text class="day">{{item.day}}</text>
+            <text class="date">{{item.date}}</text>
+            <view class="date-underline" wx:if="{{selectedConcentratedIndex == index}}"></view>
+          </view>
+        </view>
+      </view>
+
+      <view class="row">
+        <view class="label-cell time-label">
+          <text class="label-title">上午</text>
+          <text class="label-time">{{concentratedTime.morningStart}}</text>
+          <text class="label-time">{{concentratedTime.morningEnd}}</text>
+        </view>
+        <view class="row-content">
+          <view class="course-cell {{selectedConcentratedIndex == index ? 'is-highlight' : ''}}" wx:for="{{concentratedMorningCourses}}" wx:key="index">
+            <text class="course-name">{{item.name}}</text>
+            <view class="course-room">
+              <view class="room-dot"></view>
+              <text>{{item.room}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="row">
+        <view class="label-cell time-label">
+          <text class="label-title">下午</text>
+          <text class="label-time">{{concentratedTime.afternoonStart}}</text>
+          <text class="label-time">{{concentratedTime.afternoonEnd}}</text>
+        </view>
+        <view class="row-content">
+          <view class="course-cell {{selectedConcentratedIndex == index ? 'is-highlight' : ''}}" wx:for="{{concentratedAfternoonCourses}}" wx:key="index">
+            <text class="course-name">{{item.name}}</text>
+            <view class="course-room">
+              <view class="room-dot"></view>
+              <text>{{item.room}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="info-bar concentrated-bar">
+      <text>集中分组：J5</text>
+      <text>课程学号：017</text>
+    </view>
+
+    <view class="action-row">
+      <view class="action-btn" bindtap="goToConcentratedDocs">工种资料</view>
+      <view class="action-btn" bindtap="goToLeaveRequest">请假补课</view>
+    </view>
+  </view>
+
+  <!-- 分散实训 -->
+  <view class="section-card">
+    <view class="table">
+      <view class="row">
+        <view class="label-cell section-label dispersed">
+          <text>分散</text>
+          <text>实训</text>
+        </view>
+        <view class="row-content">
+          <view class="date-cell" wx:for="{{dispersedDates}}" wx:key="index">
+            <text class="day">{{item.day}}</text>
+            <text class="date">{{item.date}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="row">
+        <view class="label-cell time-label">
+          <text class="label-title">上午</text>
+          <text class="label-time">{{dispersedTime.morningStart}}</text>
+          <text class="label-time">{{dispersedTime.morningEnd}}</text>
+          <view class="time-divider"></view>
+          <text class="label-title">下午</text>
+          <text class="label-time">{{dispersedTime.afternoonStart}}</text>
+          <text class="label-time">{{dispersedTime.afternoonEnd}}</text>
+        </view>
+        <view class="row-content">
+          <view class="course-cell" wx:for="{{dispersedMorningCourses}}" wx:key="index">
+            <text class="course-name">{{item.name}}</text>
+            <view class="course-room">
+              <view class="room-dot"></view>
+              <text>{{item.room}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="info-bar dispersed-bar">
+      <text>分散小组：待组队</text>
+      <text>课程学号：017</text>
+    </view>
+
+    <view class="action-row">
+      <view class="action-btn" bindtap="goToDispersedProject">分散项目</view>
+      <view class="action-btn" bindtap="goToDispersedTeam">分散组队</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,39 @@
+<view class="container">
+  <view class="nav-bar">
+    <view class="nav-title">课程资料库</view>
+  </view>
+
+  <view class="main-layout">
+    <scroll-view scroll-y class="sidebar">
+      <view 
+        wx:for="{{categories}}" 
+        wx:key="id" 
+        class="menu-item {{currentTab === item.id ? 'active' : ''}}"
+        bindtap="switchTab"
+        data-id="{{item.id}}"
+      >
+        <view class="indicator" wx:if="{{currentTab === item.id}}"></view>
+        <text>{{item.name}}</text>
+      </view>
+    </scroll-view>
+
+    <scroll-view scroll-y class="content-area">
+      <view class="header-title">{{currentCategoryName}} - 资料列表</view>
+      
+      <view class="file-list">
+        <view class="file-item" wx:for="{{fileList}}" wx:key="index">
+          <view class="file-icon {{item.type}}">{{item.type}}</view>
+          
+          <view class="file-info">
+            <view class="file-name">{{item.name}}</view>
+            <view class="file-meta">{{item.size}} | {{item.date}}</view>
+          </view>
+          
+          <view class="download-btn">↓</view>
+        </view>
+        
+        <view class="empty-tip" wx:if="{{fileList.length === 0}}">没有更多文件了</view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

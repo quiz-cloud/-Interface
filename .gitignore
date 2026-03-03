@@ -1,0 +1,28 @@
+# 依赖目录
+node_modules/
+miniprogram_npm/
+
+# 构建产物
+dist/
+build/
+
+# 开发者工具配置（个人本地配置）
+project.private.config.json
+
+# 敏感信息
+config/secrets.js
+.env
+*.key
+
+# IDE 配置
+.idea/
+.vscode/
+*.swp
+
+# 日志文件
+*.log
+npm-debug.log*
+
+# 操作系统文件
+.DS_Store
+Thumbs.db

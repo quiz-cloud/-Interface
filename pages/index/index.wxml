@@ -1,0 +1,160 @@
+<!--index.wxml-->
+<view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
+  <view class="nav-title">工程创新训练 II</view>
+</view>
+
+<view class="container" style="padding-top: {{statusBarHeight + 44}}px;">
+  
+  <!-- 顶部黄色背景区域 -->
+  <view class="header-section">
+    <view class="header-bg">
+      <image class="header-illustration" src="/images/header-illustration.png" mode="aspectFit"></image>
+      <view class="training-info">
+        <view class="training-item">
+          <text class="label">集中实训</text>
+          <text class="date">12/04-12/08</text>
+        </view>
+        <view class="training-item">
+          <text class="label">分散实训</text>
+          <text class="date">12/11-01/05</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 分组信息卡片 -->
+  <view class="info-card">
+    <view class="info-row">
+      <view class="info-item">
+        <text class="label">分组编号：</text>
+        <text class="value blue">J5</text>
+      </view>
+      <view class="info-item">
+        <text class="label">课程学号：</text>
+        <text class="value blue">017</text>
+      </view>
+    </view>
+    <view class="link-row" bindtap="goToSchedule">
+      <text class="link-text">全部课表</text>
+      <text class="arrow">></text>
+    </view>
+  </view>
+
+  <!-- 当前课程卡片 -->
+  <view class="course-card">
+    <view class="course-header">
+      <text class="course-name">木工创意</text>
+      <view class="status-tag">上课中</view>
+    </view>
+    
+    <view class="course-time">
+      <view class="time-item">
+        <text class="label">上午</text>
+        <text class="time">8:50-12:00</text>
+      </view>
+      <view class="time-item">
+        <text class="label">下午</text>
+        <text class="time">14:00-17:00</text>
+      </view>
+    </view>
+    
+    <view class="course-location">
+      <text class="location">D3-b101</text>
+      <view class="map-link" bindtap="openMap">
+        <text class="icon-location">📍</text>
+        <text class="link">查看地图</text>
+      </view>
+    </view>
+    
+    <view class="course-actions">
+      <view class="btn btn-outline" bindtap="viewPreClass">课前必看</view>
+      <view class="btn btn-primary" bindtap="signIn">签到</view>
+      <view class="btn btn-primary" bindtap="signOut">签退</view>
+    </view>
+  </view>
+
+  <!-- 通知区域 -->
+  <view class="notice-section">
+    <view class="notice-header">
+      <view class="left" bindtap="goToNotices">
+        <text class="title">全部通知</text>
+        <text class="arrow">></text>
+      </view>
+      <view class="right" bindtap="goToNotices">
+        <text class="unread">2条未读通知</text>
+        <view class="dot"></view>
+        <text class="arrow">></text>
+      </view>
+    </view>
+    
+    <view class="notice-list">
+      <view class="notice-item completed">
+        <view class="dot gray"></view>
+        <text class="content">查看《工程训练课前须知》</text>
+        <text class="status">已完成</text>
+      </view>
+      <view class="notice-item urgent">
+        <view class="dot red"></view>
+        <text class="content">查看《集中实训分组表》</text>
+        <view class="deadline">
+          <text>剩余</text>
+          <text class="day">1</text>
+          <text>天到期</text>
+        </view>
+      </view>
+      <view class="notice-item">
+        <view class="dot red"></view>
+        <text class="content">分散项目组队</text>
+        <view class="deadline">
+          <text>剩余</text>
+          <text class="day">10</text>
+          <text>天到期</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能按钮网格 -->
+  <view class="function-grid">
+    <button class="func-btn" bindtap="navigateTo" data-page="intro">
+      <view class="btn-icon yellow">📚</view>
+      <text class="btn-text">课程介绍</text>
+    </button>
+    
+    <button class="func-btn" bindtap="navigateTo" data-page="safety">
+      <view class="btn-icon orange">🛡️</view>
+      <text class="btn-text">安全须知</text>
+    </button>
+    
+    <button class="func-btn" bindtap="navigateTo" data-page="material">
+      <view class="btn-icon blue">📋</view>
+      <text class="btn-text">工种资料</text>
+    </button>
+    
+    <button class="func-btn" bindtap="navigateTo" data-page="leave">
+      <view class="btn-icon green">📅</view>
+      <text class="btn-text">请假补课</text>
+    </button>
+    
+    <button class="func-btn" bindtap="navigateTo" data-page="project">
+      <view class="btn-icon purple">🔧</view>
+      <text class="btn-text">分散项目</text>
+    </button>
+    
+    <button class="func-btn" bindtap="navigateTo" data-page="team">
+      <view class="btn-icon pink">👥</view>
+      <text class="btn-text">分散组队</text>
+    </button>
+    
+    <button class="func-btn" bindtap="navigateTo" data-page="process">
+      <view class="btn-icon cyan">⚙️</view>
+      <text class="btn-text">加工须知</text>
+    </button>
+    
+    <button class="func-btn" bindtap="navigateTo" data-page="report">
+      <view class="btn-icon red">📝</view>
+      <text class="btn-text">报告递交</text>
+    </button>
+  </view>
+
+</view>

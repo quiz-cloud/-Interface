@@ -1,0 +1,132 @@
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">请假与补课申请</text>
+    <text class="page-subtitle">Leave and Make-up Class Application</text>
+  </view>
+
+  <form bindsubmit="submitApplication">
+    <view class="form-card">
+      <!-- 申请类型 -->
+      <view class="form-item">
+        <text class="item-label">申请类型</text>
+        <picker class="item-picker" bindchange="onTypeChange" value="{{typeIndex}}" range="{{types}}">
+          <view class="picker-content">
+            <text>{{types[typeIndex]}}</text>
+            <text class="arrow">></text>
+          </view>
+        </picker>
+      </view>
+
+      <!-- 请假日期 -->
+      <view class="form-item" wx:if="{{typeIndex == 0}}">
+        <text class="item-label">请假日期</text>
+        <picker 
+          class="item-picker" 
+          mode="date" 
+          value="{{date}}" 
+          start="{{startDate}}" 
+          end="{{endDate}}" 
+          bindchange="onDateChange"
+        >
+          <view class="picker-content">
+            <text>{{date}}</text>
+            <text class="arrow">></text>
+          </view>
+        </picker>
+      </view>
+
+      <!-- 请假理由 -->
+      <view class="form-item-vertical" wx:if="{{typeIndex == 0}}">
+        <text class="item-label">请假理由</text>
+        <textarea class="item-textarea" name="reason" placeholder="请输入详细的请假事由" maxlength="200"></textarea>
+      </view>
+
+      <!-- 请假凭证上传-->
+      <view class="form-item-vertical" wx:if="{{typeIndex == 0}}">
+        <text class="item-label">请假凭证</text>
+        <view class="upload-area">
+          <view class="uploaded-img" wx:for="{{proofImages}}" wx:key="index">
+            <image src="{{item}}" mode="aspectFill"></image>
+            <text class="delete-img" bindtap="deleteImage" data-index="{{index}}">×</text>
+          </view>
+          <button class="upload-btn" bindtap="chooseImage">+ 上传假条/证明图片</button>
+        </view>
+        <text class="tips-text">最多上传3张，支持jpg/png格式</text>
+      </view>
+
+      <!-- 补课安排 -->
+      <view class="form-item" wx:if="{{typeIndex == 1}}">
+        <text class="item-label">请选择要补的课程</text>
+        <picker class="item-picker" bindchange="onTutorTypeChange" value="{{tutorIndex}}" range="{{tutorTypes}}">
+          <view class="picker-content">
+            <text>{{tutorTypes[tutorIndex]}}</text>
+            <text class="arrow">></text>
+          </view>
+        </picker>
+      </view>
+      <view class="form-item-vertical" wx:if="{{typeIndex == 1}}">
+        <!-- 多选日期选择器 -->
+        <view class="selected-dates">
+          <view class="date-header">
+            <text class="title">请选择未来两周有空时间：</text>
+            <view class="tags-icon-wrapper">
+              <view class="tags">
+                <block wx:for="{{formattedSelectedDates}}" wx:key="index">
+                  <view class="tag">
+                    {{item}}
+                    <text class="close" bindtap="removeDate" data-date="{{selectedDates[index]}}">×</text>
+                  </view>
+                </block>
+              </view>
+              <view class="toggle-icon" bindtap="toggleCalendar">
+                <image 
+                  src="/images/icon/calendar.png" 
+                  mode="widthFix"
+                  class="calendar-icon {{showCalendar ? 'rotate-icon' : ''}}"
+                />
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <!-- 日历选择面板（受控显示/隐藏） -->
+        <view class="calendar-container" wx:if="{{showCalendar}}">
+          <view class="calendar-header">
+            <button bindtap="prevMonth" class="btn">←</button>
+            <text class="month-title">{{currentYear}}年{{currentMonth}}月</text>
+            <button bindtap="nextMonth" class="btn">→</button>
+          </view>
+
+          <view class="week-header">
+            <view class="week-item">日</view>
+            <view class="week-item">一</view>
+            <view class="week-item">二</view>
+            <view class="week-item">三</view>
+            <view class="week-item">四</view>
+            <view class="week-item">五</view>
+            <view class="week-item">六</view>
+          </view>
+
+          <view class="days">
+            <view class="day-item empty" wx:for="{{emptyDays}}" wx:key="index"></view>
+            <view 
+              class="day-item {{item.isToday ? 'today' : ''}} {{item.isSelected ? 'selected' : ''}} {{item.isDisabled ? 'disabled' : ''}}"
+              wx:for="{{daysList}}" 
+              wx:key="dateStr"
+              bindtap="toggleDate"
+              data-date="{{item.dateStr}}"
+            >
+              {{item.day}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <button class="submit-btn" form-type="submit">提交申请</button>
+  </form>
+
+  <view class="history-link" bindtap="viewHistory">
+    <text>查看历史申请</text>
+  </view>
+</view>
