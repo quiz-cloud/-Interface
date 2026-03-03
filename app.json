@@ -11,7 +11,8 @@
     "pages/leave/leave",
     "pages/project-dispersed/project-dispersed",
     "pages/team-dispersed/team-dispersed",
-    "pages/notices/notices"
+    "pages/notices/notices",
+    "pages/report/report"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,66 @@
+<view class="container">
+  <swiper class="swiper" vertical="true">
+
+    <swiper-item wx:for="{{reports}}" wx:key="id">
+      <view class="card">
+
+        <!-- 状态标签 -->
+        <view class="status-badge
+          {{item.status==0?'pending':
+            item.status==1?'checking':'done'}}">
+
+          {{item.status==0?'待递交':
+            item.status==1?'待批改':'已批改'}}
+
+        </view>
+
+        <view class="meta-time">发布时间：{{item.time}}</view>
+        <view class="title">{{item.title}}</view>
+
+        <view class="section-label">📋 报告要求</view>
+
+        <scroll-view scroll-y="true" class="req-box">
+          <view wx:for="{{item.requirement}}" wx:key="index">
+            {{item}}
+          </view>
+        </scroll-view>
+
+        <!-- 未提交 -->
+        <view wx:if="{{item.status==0}}" class="action-area">
+          <button
+            class="main-btn"
+            bindtap="chooseFile"
+            data-index="{{index}}">
+            📤 上传报告
+          </button>
+        </view>
+
+        <!-- 已提交 -->
+        <view wx:if="{{item.status==1}}">
+
+          <!-- 文件预览 -->
+          <view
+            class="file-preview"
+            bindtap="previewFile"
+            data-index="{{index}}">
+            <text class="file-icon">📄</text>
+            <text class="file-name">{{item.fileName}}</text>
+          </view>
+
+          <!-- 修改按钮 -->
+          <view class="action-area">
+            <button
+              class="main-btn outline"
+              bindtap="chooseFile"
+              data-index="{{index}}">
+              ✏️ 修改文件
+            </button>
+          </view>
+
+        </view>
+
+      </view>
+    </swiper-item>
+
+  </swiper>
+</view>
