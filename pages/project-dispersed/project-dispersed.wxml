@@ -1,4 +1,3 @@
-<!--pages/project-dispersed/project-dispersed.wxml-->
 <view class="container">
   <view class="page-header">
     <text class="page-title">分散项目资料</text>
@@ -6,20 +5,66 @@
   </view>
 
   <view class="project-list">
-    <view class="project-card" wx:for="{{projects}}" wx:key="index" bindtap="viewProject" data-index="{{index}}" hover-class="card-hover">
+    <view class="project-card" wx:for="{{projects}}" wx:key="index" bindtap="toggleProject" data-index="{{index}}" hover-class="card-hover">
       <view class="card-header">
         <text class="card-title">{{item.title}}</text>
-        <view class="status-tag {{item.statusClass}}">{{item.statusText}}</view>
+        <image class="arrow-icon" src="/images/icon/{{item.isExpanded ? 'up.png' : 'down.png'}}" />
       </view>
       <text class="card-desc">{{item.description}}</text>
       <view class="card-footer">
         <view class="footer-item">
-          <image class="footer-icon" src="/images/icon-teacher.png" />
+          <image class="footer-icon" src="/images/icon/teacher.png" />
           <text class="footer-text">指导老师: {{item.instructor}}</text>
         </view>
         <view class="footer-item">
-          <image class="footer-icon" src="/images/icon-clock.png" />
+          <image class="footer-icon" src="/images/icon/clock.png" />
           <text class="footer-text">建议周期: {{item.duration}}</text>
+        </view>
+      </view>
+
+      <view class="project-detail" wx:if="{{item.isExpanded}}">
+        <view class="detail-section">
+          <view class="section-title">
+            <image class="section-icon" src="/images/icon/task.png" />
+            <text>项目任务</text>
+          </view>
+          <text class="section-content">{{item.task}}</text>
+        </view>
+
+        <view class="detail-section">
+          <view class="section-title">
+            <image class="section-icon" src="/images/icon/tech.png" />
+            <text>技术要求</text>
+          </view>
+          <text class="section-content">{{item.tech}}</text>
+        </view>
+
+        <view class="detail-section">
+          <view class="section-title">
+            <image class="section-icon" src="/images/icon/group.png" />
+            <text>组队要求</text>
+          </view>
+          <text class="section-content">{{item.group}}</text>
+        </view>
+
+        <!-- 优秀作品区域 -->
+        <view class="detail-section" wx:if="{{item.greatWorks.length > 0}}">
+          <view class="section-title">
+            <image class="section-icon" src="/images/icon/champion.png" />
+            <text>往届优秀作品</text>
+          </view>
+          <view class="works-list">
+            <view class="work-item" 
+                  wx:for="{{item.greatWorks}}" 
+                  wx:for-item="work" 
+                  wx:for-index="workIndex" 
+                  wx:key="workIndex"
+                  catchtap="previewGreatWork"
+                  data-index="{{index}}"
+                  data-work-index="{{workIndex}}">
+              <image class="work-img" src="{{work}}" mode="aspectFill" />
+            </view>
+          </view>
         </view>
       </view>
     </view>
