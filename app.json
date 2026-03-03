@@ -2,9 +2,12 @@
   "pages": [
     "pages/login/login",
     "pages/index/index",
+    "pages/index/intro",
     "pages/appointment/appointment",
     "pages/home/home",
     "pages/chat/chat",
+    "pages/chat/publish",
+    "pages/chat/detail",
     "pages/profile/profile",
     "pages/material/material",
     "pages/safety/safety",
