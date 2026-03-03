@@ -1,1 +1,96 @@
-/* pages/appoint.wxss */
+.page {
+	min-height: 100vh;
+	background: #fbf4e6;
+	padding: 24rpx;
+	box-sizing: border-box;
+}
+
+.card {
+	background: #fff;
+	border-radius: 20rpx;
+	padding: 24rpx;
+}
+
+.title {
+	font-size: 34rpx;
+	font-weight: 700;
+	color: #2a2a2a;
+	margin-bottom: 12rpx;
+}
+
+.meta {
+	font-size: 24rpx;
+	color: #666;
+	margin-bottom: 6rpx;
+}
+
+.slot-list {
+	margin-top: 20rpx;
+}
+
+.slot {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 18rpx 20rpx;
+	border-radius: 14rpx;
+	margin-bottom: 14rpx;
+	border: 2rpx solid transparent;
+}
+
+.slot.free {
+	background: #e8f4d2;
+}
+
+.slot.busy {
+	background: #f7d7da;
+}
+
+.slot.is-selected {
+	border-color: #f7b400;
+}
+
+.slot-time {
+	font-size: 26rpx;
+	color: #333;
+}
+
+.slot-status {
+	font-size: 24rpx;
+	color: #555;
+}
+
+.file-row {
+	margin-top: 8rpx;
+	margin-bottom: 6rpx;
+}
+
+.upload-btn {
+	display: inline-block;
+	background: #fff;
+	color: #f7b400;
+	border: 2rpx solid #f7b400;
+	border-radius: 28rpx;
+	font-size: 24rpx;
+	font-weight: 700;
+	padding: 10rpx 20rpx;
+}
+
+.file-name {
+	display: block;
+	margin-top: 10rpx;
+	font-size: 22rpx;
+	color: #666;
+	word-break: break-all;
+}
+
+.confirm-btn {
+	margin-top: 24rpx;
+	background: #f7b400;
+	color: #fff;
+	text-align: center;
+	font-size: 28rpx;
+	font-weight: 700;
+	border-radius: 40rpx;
+	padding: 18rpx 0;
+}

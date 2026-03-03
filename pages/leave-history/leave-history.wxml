@@ -1,0 +1,29 @@
+<view class="container">
+  <view class="history-list" wx:if="{{historyList.length > 0}}">
+    <block wx:for="{{historyList}}" wx:key="id">
+      <view class="history-card">
+        <view class="card-header">
+          <text class="apply-type">{{item.type}}</text>
+          <view class="status-tag {{item.statusClass}}">{{item.statusText}}</view>
+        </view>
+        <view class="card-body">
+          <view class="info-row">
+            <text class="label">申请时间：</text>
+            <text class="value">{{item.applyTime}}</text>
+          </view>
+          <view class="info-row" wx:if="{{item.type === '请假申请'}}">
+            <text class="label">请假事由：</text>
+            <text class="value reason-text">{{item.reason}}</text>
+          </view>
+          <view class="info-row" wx:if="{{item.type === '补课申请'}}">
+            <text class="label">补课课程：</text>
+            <text class="value reason-text">{{item.tutorCourse}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class="empty-state" wx:else>
+    <text>暂无历史申请记录</text>
+  </view>
+</view>

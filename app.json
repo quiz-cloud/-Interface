@@ -2,9 +2,13 @@
   "pages": [
     "pages/login/login",
     "pages/index/index",
+    "pages/index/intro",
     "pages/appointment/appointment",
+    "pages/appointment/appoint",
     "pages/home/home",
     "pages/chat/chat",
+    "pages/chat/publish",
+    "pages/chat/detail",
     "pages/profile/profile",
     "pages/material/material",
     "pages/safety/safety",
@@ -12,7 +16,8 @@
     "pages/project-dispersed/project-dispersed",
     "pages/team-dispersed/team-dispersed",
     "pages/notices/notices",
-    "pages/report/report"
+    "pages/report/report",
+    "pages/leave-history/leave-history"
   ],
   "window": {
     "backgroundTextStyle": "light",
