@@ -86,15 +86,16 @@ Page({
    */
   handleAction(e) {
     const action = e.currentTarget.dataset.action;
-    const titleMap = {
-      help: this.data.t.help,
-      feedback: this.data.t.feedback,
-      about: this.data.t.about
+    const routeMap = {
+      help: '/pages/profile/help-center',
+      feedback: '/pages/profile/feedback',
+      about: '/pages/profile/about'
     };
-    wx.showToast({
-      title: `${titleMap[action] || this.data.t.unknownAction} ${this.data.t.comingSoon}`,
-      icon: 'none'
-    });
+    
+    const url = routeMap[action];
+    if (url) {
+      wx.navigateTo({ url });
+    }
   },
 
   handleLanguageChange(e) {
@@ -104,9 +105,8 @@ Page({
   },
 
   handleChangePassword() {
-    wx.showToast({
-      title: this.data.t.passwordTip,
-      icon: "none"
+    wx.navigateTo({
+      url: '/pages/profile/change-password'
     });
   },
 

@@ -54,7 +54,13 @@
 	<view class="machine-list">
 		<view class="machine-card" wx:for="{{machines}}" wx:key="index">
 			<view class="machine-image">
-				<text>设备图片</text>
+        <image 
+          class="machine-img"
+          src="{{item.imageUrl}}"
+          mode="widthFix"
+          lazy-load="true"
+          data-index="{{index}}"
+        ></image>
 			</view>
 			<view class="machine-info">
 				<view class="machine-title-row">

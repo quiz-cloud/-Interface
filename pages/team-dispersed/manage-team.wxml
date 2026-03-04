@@ -1,0 +1,131 @@
+<!--pages/team-dispersed/manage-team.wxml-->
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">管理我的队伍</text>
+    <text class="page-subtitle">Manage My Team</text>
+  </view>
+
+  <!-- 队伍基本信息 -->
+  <view class="info-card">
+    <view class="card-header">
+      <text class="card-title">队伍信息</text>
+    </view>
+    <view class="info-item">
+      <text class="info-label">项目名称</text>
+      <text class="info-value">{{teamInfo.projectName}}</text>
+    </view>
+    <view class="info-item">
+      <text class="info-label">队伍描述</text>
+      <text class="info-value">{{teamInfo.description}}</text>
+    </view>
+    <view class="info-item">
+      <text class="info-label">创建时间</text>
+      <text class="info-value">{{teamInfo.createTime}}</text>
+    </view>
+    <view class="info-item">
+      <text class="info-label">队伍人数</text>
+      <text class="info-value">{{teamInfo.memberCount}} / {{teamInfo.maxMembers}}</text>
+    </view>
+    <button class="edit-btn" bindtap="editTeamInfo">编辑队伍信息</button>
+  </view>
+
+  <!-- 成员管理 -->
+  <view class="members-card">
+    <view class="card-header">
+      <text class="card-title">成员管理</text>
+      <text class="member-count">({{teamInfo.memberCount}}人)</text>
+    </view>
+    <view class="member-list">
+      <view class="member-item" wx:for="{{teamInfo.members}}" wx:key="id">
+        <view class="member-info">
+          <image class="member-avatar" src="{{item.avatar}}" />
+          <view class="member-detail">
+            <view class="member-name-row">
+              <text class="member-name">{{item.name}}</text>
+              <view class="role-tag {{item.role === '队长' ? 'captain-tag' : 'member-tag'}}">
+                <text>{{item.role}}</text>
+              </view>
+            </view>
+            <text class="member-id">学号: {{item.studentId}}</text>
+          </view>
+        </view>
+        <view class="member-actions" wx:if="{{item.role !== '队长'}}">
+          <button class="action-btn transfer-btn" size="mini" bindtap="transferCaptain" data-id="{{item.id}}">
+            转让队长
+          </button>
+          <button class="action-btn remove-btn" size="mini" bindtap="removeMember" data-id="{{item.id}}">
+            移除
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 入队申请 -->
+  <view class="applications-card" wx:if="{{applications.length > 0}}">
+    <view class="card-header">
+      <text class="card-title">入队申请</text>
+      <view class="badge">{{applications.length}}</view>
+    </view>
+    <view class="application-list">
+      <view class="application-item" wx:for="{{applications}}" wx:key="id">
+        <view class="applicant-info">
+          <image class="applicant-avatar" src="{{item.avatar}}" />
+          <view class="applicant-detail">
+            <text class="applicant-name">{{item.name}}</text>
+            <text class="applicant-id">学号: {{item.studentId}}</text>
+            <text class="apply-time">申请时间: {{item.applyTime}}</text>
+          </view>
+        </view>
+        <view class="application-actions">
+          <button class="action-btn approve-btn" size="mini" bindtap="approveApplication" data-id="{{item.id}}">
+            同意
+          </button>
+          <button class="action-btn reject-btn" size="mini" bindtap="rejectApplication" data-id="{{item.id}}">
+            拒绝
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 危险操作区 -->
+  <view class="danger-zone">
+    <view class="card-header">
+      <text class="card-title danger-title">危险操作</text>
+    </view>
+    <button class="danger-btn quit-btn" bindtap="quitTeam">退出队伍</button>
+    <button class="danger-btn dissolve-btn" bindtap="dissolveTeam">解散队伍</button>
+  </view>
+</view>
+
+<!-- 编辑队伍信息弹窗 -->
+<view class="modal-mask" wx:if="{{showEditModal}}" bindtap="closeEditModal">
+  <view class="modal-content" catchtap="stopPropagation">
+    <view class="modal-header">
+      <text class="modal-title">编辑队伍信息</text>
+    </view>
+    <view class="modal-body">
+      <view class="form-item">
+        <text class="form-label">项目名称</text>
+        <input class="form-input" value="{{editForm.projectName}}" bindinput="onProjectNameInput" placeholder="请输入项目名称" />
+      </view>
+      <view class="form-item">
+        <text class="form-label">队伍描述</text>
+        <textarea class="form-textarea" value="{{editForm.description}}" bindinput="onDescriptionInput" placeholder="请输入队伍描述" maxlength="200" />
+        <text class="char-count">{{editForm.description.length}}/200</text>
+      </view>
+      <view class="form-item">
+        <text class="form-label">最大人数</text>
+        <picker mode="selector" range="{{maxMembersOptions}}" value="{{editForm.maxMembersIndex}}" bindchange="onMaxMembersChange">
+          <view class="picker-view">{{maxMembersOptions[editForm.maxMembersIndex]}}人</view>
+        </picker>
+      </view>
+    </view>
+    <view class="modal-footer">
+      <button class="modal-btn cancel-btn" bindtap="closeEditModal">取消</button>
+      <button class="modal-btn confirm-btn" bindtap="confirmEdit">确定</button>
+    </view>
+  </view>
+</view>
+
