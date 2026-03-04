@@ -32,7 +32,9 @@ Page({
   },
 
   manageTeam() {
-    wx.showToast({ title: '管理功能待接入', icon: 'none' });
+   wx.navigateTo({
+      url: '/pages/team-dispersed/manage-team'
+    });
   },
 
   joinTeam(e) {
