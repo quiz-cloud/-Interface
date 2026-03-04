@@ -30,6 +30,11 @@
     "include": []
   },
   "appid": "wx11513036e73f5fd4",
-  "editorSetting": {},
-  "libVersion": "3.14.2"
+  "editorSetting": {
+    "tabIndent": "auto",
+    "tabSize": 2
+  },
+  "libVersion": "3.14.2",
+  "projectname": "test",
+  "condition": {}
 }

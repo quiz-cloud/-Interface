@@ -10,7 +10,7 @@
 .profile-card {
   display: flex;
   align-items: center;
-  background-color: #fff7e7;
+  background-color: #ffffff;
   padding: 40rpx;
   border-radius: 16rpx;
   margin-bottom: 24rpx;
@@ -70,7 +70,7 @@
 
 /* 列表卡片通用样式 */
 .action-list-card {
-  background-color: #fff7e7;
+  background-color: #ffffff;
   border-radius: 16rpx;
   padding: 16rpx 32rpx;
   box-shadow: 0 4rpx 12rpx rgba(247, 180, 0, 0.12);

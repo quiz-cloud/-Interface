@@ -205,7 +205,6 @@ Page({
   removeDate(e) {
     const dateStr = e.currentTarget.dataset.date;
     const selectedDates = this.data.selectedDates.filter(d => d !== dateStr);
-
     const formattedSelectedDates = [];
     for (let i = 0; i < selectedDates.length; i++) {
       const dateParts = selectedDates[i].split('-');
@@ -241,7 +240,6 @@ Page({
         });
         return;
       }
-
       //是否有添加请假凭证
       if (formData.proofImages.length === 0) {
         wx.showToast({
@@ -260,7 +258,6 @@ Page({
         });
         return;
       }
-
       //是否有选择补课日期
       if (formData.selectedDates.length === 0) {
         wx.showToast({

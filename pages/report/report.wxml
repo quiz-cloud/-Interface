@@ -1,17 +1,10 @@
 <view class="container">
   <swiper class="swiper" vertical="true">
-
     <swiper-item wx:for="{{reports}}" wx:key="id">
       <view class="card">
-
         <!-- 状态标签 -->
-        <view class="status-badge
-          {{item.status==0?'pending':
-            item.status==1?'checking':'done'}}">
-
-          {{item.status==0?'待递交':
-            item.status==1?'待批改':'已批改'}}
-
+        <view class="status-badge {{item.status==0?'pending':item.status==1?'checking':'done'}}">
+          {{item.status==0?'待递交':item.status==1?'待批改':'已批改'}}
         </view>
 
         <view class="meta-time">发布时间：{{item.time}}</view>
@@ -37,7 +30,6 @@
 
         <!-- 已提交 -->
         <view wx:if="{{item.status==1}}">
-
           <!-- 文件预览 -->
           <view
             class="file-preview"
@@ -56,11 +48,8 @@
               ✏️ 修改文件
             </button>
           </view>
-
         </view>
-
       </view>
     </swiper-item>
-
   </swiper>
 </view>
