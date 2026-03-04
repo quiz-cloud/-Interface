@@ -1,4 +1,47 @@
 // pages/profile/profile.js
+const I18N = {
+  zh: {
+    profileTitle: "个人中心",
+    studentId: "学号",
+    help: "帮助中心",
+    feedback: "意见反馈",
+    about: "关于我们",
+    language: "切换语言",
+    changePassword: "修改密码",
+    logout: "退出登录",
+    login: "去登录",
+    loggedOutTitle: "未登录",
+    loggedOutSubtitle: "登录后查看个人信息",
+    loginTip: "登录功能待接入",
+    logoutConfirmTitle: "确认退出登录",
+    logoutConfirmContent: "退出后将清除本地缓存信息。",
+    logoutCanceled: "已取消",
+    passwordTip: "功能待接入",
+    comingSoon: "功能待接入",
+    unknownAction: "该功能"
+  },
+  en: {
+    profileTitle: "Profile",
+    studentId: "Student ID",
+    help: "Help Center",
+    feedback: "Feedback",
+    about: "About Us",
+    language: "Language",
+    changePassword: "Change Password",
+    logout: "Log Out",
+    login: "Sign In",
+    loggedOutTitle: "Not signed in",
+    loggedOutSubtitle: "Sign in to view your profile",
+    loginTip: "Sign-in coming soon",
+    logoutConfirmTitle: "Confirm Log Out",
+    logoutConfirmContent: "Local data will be cleared after logging out.",
+    logoutCanceled: "Canceled",
+    passwordTip: "Coming soon",
+    comingSoon: "coming soon",
+    unknownAction: "This action"
+  }
+};
+
 Page({
   data: {
     // 模拟的用户信息
@@ -7,12 +50,35 @@ Page({
       studentId: "20240017",
       avatar: "/images/avatar-placeholder.png" // 建议在/images目录下放置一张占位图
     },
-    currentLang: wx.getStorage('language') === 'en' ? 'English' : '简体中文'
+    isLoggedIn: true,
+    langOptions: [
+      { label: "中文", value: "zh" },
+      { label: "English", value: "en" }
+    ],
+    langIndex: 0,
+    currentLang: "zh",
+    t: I18N.zh
   },
 
   onLoad(options) {
-    // 页面加载时可以从全局或缓存中获取真实用户信息
-    // wx.getStorage({ key: 'userInfo' }).then(res => this.setData({ user: res.data }));
+    const savedLang = wx.getStorageSync("profileLang") || "zh";
+    const index = this.data.langOptions.findIndex(item => item.value === savedLang);
+    const langIndex = index >= 0 ? index : 0;
+    this.applyLanguage(this.data.langOptions[langIndex].value, langIndex);
+    this.syncAuthState();
+  },
+
+  applyLanguage(lang, langIndex) {
+    const translation = I18N[lang] || I18N.zh;
+    this.setData({
+      currentLang: lang,
+      langIndex,
+      t: translation
+    });
+    wx.setStorageSync("profileLang", lang);
+    wx.setNavigationBarTitle({
+      title: translation.profileTitle
+    });
   },
 
   /**
@@ -20,68 +86,84 @@ Page({
    */
   handleAction(e) {
     const action = e.currentTarget.dataset.action;
-    /*
-      此处修改了下面注释部分
-    */
-    // const titleMap = {
-    //   help: "帮助中心",
-    //   feedback: "意见反馈",
-    //   about: "关于我们"
-    // };
-    // wx.showToast({
-    //   title: `${titleMap[action] || '该功能'}待接入`,
-    //   icon: 'none'
-    // });
-    switch (action) {
-      case "help":
-        wx.showToast({
-          title: '帮助中心待接入',
-        })
-        break;
-      case "feedback":
-        wx.showToast({
-          title: '意见反馈待接入',
-        })
-        break;
-      case "about":
-        wx.showToast({
-          title: '关于我们待接入',
-        })
-        break;
-      case "changePwd":
-        wx.showToast({
-          title: '修改密码待接入',
-        })
-        break;
-      case "changeLang":
-        wx.showActionSheet({
-          itemList: ['简体中文', 'English'],
-          success: (res) => {
-            const lang = res.tapIndex === 0 ? 'zh-CN' : 'en';
-            const langText = res.tapIndex === 0 ? '简体中文' : 'English';
-            // 存缓存 + 更新页面显示
-            wx.setStorageSync('language', lang);
-            this.setData({
-              currentLang: langText // 关键：更新当前语言显示
-            });
-            wx.showToast({
-              title: `已切换为${langText}`,
-              icon: 'success'
-            });
-          }
-        });
-        break;
-      case "logout":
-        wx.showModal({
-          title: "退出登录待接入",
-        });
-        break;
-      default:
-        break;
+    const routeMap = {
+      help: '/pages/profile/help-center',
+      feedback: '/pages/profile/feedback',
+      about: '/pages/profile/about'
+    };
+    
+    const url = routeMap[action];
+    if (url) {
+      wx.navigateTo({ url });
     }
   },
 
+  handleLanguageChange(e) {
+    const langIndex = Number(e.detail.value) || 0;
+    const lang = this.data.langOptions[langIndex].value;
+    this.applyLanguage(lang, langIndex);
+  },
+
+  handleChangePassword() {
+    wx.navigateTo({
+      url: '/pages/profile/change-password'
+    });
+  },
+
+  handleLogin() {
+    wx.navigateTo({
+      url: "/pages/login/login"
+    });
+  },
+
+  handleLogout() {
+    wx.showModal({
+      title: this.data.t.logoutConfirmTitle,
+      content: this.data.t.logoutConfirmContent,
+      confirmColor: "#f7b400",
+      success: (res) => {
+        if (res.confirm) {
+          const currentLang = this.data.currentLang;
+          wx.clearStorageSync();
+          wx.setStorageSync("profileLang", currentLang);
+          wx.setStorageSync("isLoggedIn", false);
+          this.setData({
+            isLoggedIn: false
+          });
+          wx.reLaunch({
+            url: "/pages/profile/profile"
+          });
+          return;
+        }
+        wx.showToast({
+          title: this.data.t.logoutCanceled,
+          icon: "none"
+        });
+      }
+    });
+  },
+
+  syncAuthState() {
+    const storedUser = wx.getStorageSync("userInfo");
+    const logoutFlag = wx.getStorageSync("isLoggedIn");
+    const isLoggedIn = logoutFlag !== false;
+    if (storedUser && typeof storedUser === "object") {
+      this.setData({
+        user: {
+          ...this.data.user,
+          ...storedUser
+        },
+        isLoggedIn
+      });
+      return;
+    }
+    this.setData({
+      isLoggedIn
+    });
+  },
+
   onShow() {
+    this.syncAuthState();
     // 设置tabBar选中状态
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({

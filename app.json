@@ -1,18 +1,28 @@
 {
   "pages": [
-    
+    "pages/login/login",
     "pages/index/index",
+    "pages/index/intro",
     "pages/appointment/appointment",
+    "pages/appointment/appoint",
     "pages/home/home",
     "pages/chat/chat",
+    "pages/chat/publish",
+    "pages/chat/detail",
     "pages/profile/profile",
+    "pages/profile/help-center",
+    "pages/profile/feedback",
+    "pages/profile/about",
+    "pages/profile/change-password",
     "pages/material/material",
     "pages/safety/safety",
     "pages/leave/leave",
     "pages/project-dispersed/project-dispersed",
     "pages/team-dispersed/team-dispersed",
-    "pages/notices/notices"
-    
+    "pages/notices/notices",
+    "pages/report/report",
+    "pages/leave-history/leave-history",
+    "pages/team-dispersed/manage-team"
   ],
   "window": {
     "backgroundTextStyle": "light",

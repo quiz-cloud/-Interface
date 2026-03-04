@@ -7,8 +7,8 @@
   
   <!-- 顶部黄色背景区域 -->
   <view class="header-section">
-    <view class="header-bg">
-      <image class="header-illustration" src="/images/header-illustration.png" mode="aspectFit"></image>
+    <image class="header-bg-img" src="/images/header-illustration.png" mode="aspectFill"></image>
+    <view class="header-bg-content">
       <view class="training-info">
         <view class="training-item">
           <text class="label">集中实训</text>

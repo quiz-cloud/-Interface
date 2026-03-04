@@ -54,7 +54,6 @@
 	<view class="machine-list">
 		<view class="machine-card" wx:for="{{machines}}" wx:key="index">
 			<view class="machine-image">
-				<!-- <text>设备图片</text> -->
         <image 
           class="machine-img"
           src="{{item.imageUrl}}"
@@ -97,8 +96,14 @@
 				<text class="my-date">{{myBooking.date}}</text>
 				<text class="my-range">{{myBooking.time}}</text>
 			</view>
+			<view class="my-extra">
+				<text>加工文件：{{myBooking.processingFileName}}</text>
+			</view>
+			<view class="my-extra status {{myBooking.reported ? 'reported' : ''}}">
+				<text>预约状态：{{myBooking.statusText}}</text>
+			</view>
 			<view class="my-actions">
-				<view class="my-btn outline" data-action="edit" bindtap="onMyActionTap">加工文件修改</view>
+				<view class="my-btn outline {{myBooking.reported ? 'disabled' : ''}}" data-action="edit" bindtap="onMyActionTap">加工文件修改</view>
 				<view class="my-btn" data-action="checkin" bindtap="onMyActionTap">报道</view>
 			</view>
 		</view>

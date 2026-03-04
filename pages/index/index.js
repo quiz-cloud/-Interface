@@ -87,7 +87,7 @@ Page({
   navigateTo(e) {
     const page = e.currentTarget.dataset.page;
     const routes = {
-      intro: '/pages/course/intro',
+      intro: '/pages/index/intro',
       safety: '/pages/safety/safety',
       material: '/pages/material/material',
       leave: '/pages/leave/leave',

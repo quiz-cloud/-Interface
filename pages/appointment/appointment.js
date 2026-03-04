@@ -1,123 +1,251 @@
 // pages/appointment/appointment.js
-// 统一的时间段占用状态示例。
-const DEFAULT_SLOTS = [
-  { status: "busy" },
-  { status: "busy" },
-  { status: "mid" },
-  { status: "free" },
-  { status: "free" },
-  { status: "busy" },
-  { status: "busy" },
-  { status: "free" }
-];
-
-// 类别与设备选项、设备列表的对应关系。
+const bookingService = require("../../services/appointment-booking");
+const TIME_LABELS = bookingService.TIME_LABELS;
+const WEEK_DATES = bookingService.WEEK_DATES;
 const CATEGORY_CONFIG = [
   {
     name: "激光切割",
     deviceOptions: ["全部设备", "激光切割机"],
     machines: [
-      { name: "激光切割机 1", slots: DEFAULT_SLOTS, imageUrl:"/images/machines/LaserCuttingMachine.png" },
-      { name: "激光切割机 2", slots: DEFAULT_SLOTS, imageUrl:"/images/machines/LaserCuttingMachine.png" },
-      { name: "激光切割机 3", slots: DEFAULT_SLOTS, imageUrl:"/images/machines/LaserCuttingMachine.png" }
+      { id: "laser-1", name: "激光切割机 1", imageUrl:"/images/machines/laserCuttingMachine.png" },
+      { id: "laser-2", name: "激光切割机 2", imageUrl:"/images/machines/laserCuttingMachine.png" },
+      { id: "laser-3", name: "激光切割机 3", imageUrl:"/images/machines/laserCuttingMachine.png" }
     ]
   },
   {
     name: "3D打印",
     deviceOptions: ["全部设备", "3D打印机"],
     machines: [
-      { name: "3D打印机 1", slots: DEFAULT_SLOTS, imageUrl:"/images/machines/3DPrinter.png" },
-      { name: "3D打印机 2", slots: DEFAULT_SLOTS, imageUrl:"/images/machines/3DPrinter.png" }
+      { id: "print-1", name: "3D打印机 1", imageUrl:"/images/machines/3DPrinter.png" },
+      { id: "print-2", name: "3D打印机 2", imageUrl:"/images/machines/3DPrinter.png" }
     ]
   },
   {
     name: "电子工艺",
     deviceOptions: ["全部设备", "电子工艺"],
     machines: [
-      { name: "电子工艺设备 1", slots: DEFAULT_SLOTS, imageUrl:"/images/machines/electronicProcessingEquipment.png" },
-      { name: "电子工艺设备 2", slots: DEFAULT_SLOTS, imageUrl:"/images/machines/electronicProcessingEquipment.png" }
+      { id: "electronic-1", name: "电子工艺设备 1", imageUrl:"/images/machines/electronicProcessingEquipment.png" },
+      { id: "electronic-2", name: "电子工艺设备 2", imageUrl:"/images/machines/electronicProcessingEquipment.png" }
     ]
   },
   {
     name: "基础实训",
     deviceOptions: ["全部设备", "基础实训"],
     machines: [
-      { name: "基础实训设备 1", slots: DEFAULT_SLOTS, imageUrl:"/images/machines/basicTrainingEquipment.png" },
-      { name: "基础实训设备 2", slots: DEFAULT_SLOTS, imageUrl:"/images/machines/basicTrainingEquipment.png" }
+      { id: "base-1", name: "基础实训设备 1", imageUrl:"/images/machines/basicTrainingEquipment.png" },
+      { id: "base-2", name: "基础实训设备 2", imageUrl:"/images/machines/basicTrainingEquipment.png" }
     ]
   }
 ];
 
+function getAllMachineIds() {
+  return CATEGORY_CONFIG.reduce((acc, category) => {
+    const machineIds = category.machines.map((machine) => machine.id);
+    return acc.concat(machineIds);
+  }, []);
+}
+
 Page({
   data: {
-    // 顶部类别标签。
     categories: CATEGORY_CONFIG.map((item) => ({ name: item.name })),
     selectedCategoryIndex: 0,
-    // 当前类别下的设备筛选项。
     deviceOptions: CATEGORY_CONFIG[0].deviceOptions,
     selectedDeviceIndex: 0,
-    weekDates: [
-      { date: "03.16", day: "周一" },
-      { date: "03.17", day: "周二" },
-      { date: "03.18", day: "周三" },
-      { date: "03.19", day: "周四" },
-      { date: "03.20", day: "周五" },
-      { date: "03.21", day: "周六" },
-      { date: "03.22", day: "周日" }
-    ],
+    weekDates: WEEK_DATES,
     selectedDateIndex: 0,
-    timeLabels: ["9", "10", "11", "12", "14", "15", "16", "17"],
-    // 当前类别对应的设备列表。
-    machines: CATEGORY_CONFIG[0].machines,
+    timeLabels: TIME_LABELS,
+    machines: [],
     myBooking: {
-      name: "激光切割机1",
-      date: "3月16日",
-      time: "早上 10:00 - 11:00",
-      room: "D3-b101"
+      name: "暂无预约",
+      date: "-",
+      time: "-",
+      room: "-",
+      processingFileName: "-",
+      statusText: "未报道",
+      reported: false
     }
   },
 
-  onCategoryTap(e) {
-    // 切换类别时同步设备选项与设备列表。
-    const index = Number(e.currentTarget.dataset.index || 0);
-    const config = CATEGORY_CONFIG[index] || CATEGORY_CONFIG[0];
+  onLoad() {
+    bookingService.ensureLocalBookingStore(getAllMachineIds());
+    this.refreshMyBooking();
+    this.refreshMachines();
+  },
+
+  onShow() {
+    this.refreshMyBooking();
+    this.refreshMachines();
+  },
+
+  refreshMyBooking() {
+    const latestBooking = bookingService.getLatestBooking();
     this.setData({
-      selectedCategoryIndex: index,
-      selectedDeviceIndex: 0,
-      deviceOptions: config.deviceOptions,
-      machines: config.machines
+      myBooking: latestBooking || {
+        name: "暂无预约",
+        date: "-",
+        time: "-",
+        room: "-",
+        processingFileName: "-",
+        statusText: "未报道",
+        reported: false
+      }
+    });
+
+    if (latestBooking) {
+      this.setData({
+        myBooking: {
+          ...latestBooking,
+          processingFileName: latestBooking.processingFileName || "-",
+          statusText: latestBooking.reported ? "已报道" : "未报道"
+        }
+      });
+    }
+  },
+
+  getCurrentDateKey() {
+    const { selectedDateIndex } = this.data;
+    return (WEEK_DATES[selectedDateIndex] || WEEK_DATES[0]).dateKey;
+  },
+
+  getBookedSlots(dateKey, machineId) {
+    return bookingService.getBookedSlots({
+      dateKey,
+      machineId,
+      machineIds: getAllMachineIds()
     });
   },
 
+  getSlotsByBooking(machineId, dateKey) {
+    const bookedSlots = this.getBookedSlots(dateKey, machineId);
+    const bookedSet = new Set(bookedSlots);
+
+    return TIME_LABELS.map((_, index) => ({
+      status: bookedSet.has(index) ? "busy" : "free"
+    }));
+  },
+
+  refreshMachines() {
+    const { selectedCategoryIndex, selectedDeviceIndex } = this.data;
+    const category = CATEGORY_CONFIG[selectedCategoryIndex] || CATEGORY_CONFIG[0];
+    const dateKey = this.getCurrentDateKey();
+
+    let machines = category.machines;
+    if (selectedDeviceIndex > 0) {
+      const selectedOption = category.deviceOptions[selectedDeviceIndex] || "";
+      machines = machines.filter((machine) => machine.name.indexOf(selectedOption) > -1);
+    }
+
+    const machineCards = machines.map((machine) => ({
+      id: machine.id,
+      name: machine.name,
+      imageUrl: machine.imageUrl,
+      slots: this.getSlotsByBooking(machine.id, dateKey)
+    }));
+
+    this.setData({
+      deviceOptions: category.deviceOptions,
+      machines: machineCards
+    });
+  },
+
+  onCategoryTap(e) {
+    const index = Number(e.currentTarget.dataset.index || 0);
+    this.setData({
+      selectedCategoryIndex: index,
+      selectedDeviceIndex: 0
+    });
+    this.refreshMachines();
+  },
+
   onDateTap(e) {
-    // 切换预约日期。
     const index = Number(e.currentTarget.dataset.index || 0);
     this.setData({ selectedDateIndex: index });
+    this.refreshMachines();
   },
 
   onDeviceChange(e) {
-    // 设备筛选切换。
     this.setData({ selectedDeviceIndex: Number(e.detail.value || 0) });
+    this.refreshMachines();
   },
 
-  onReserveTap() {
-    // 预约入口占位提示。
-    wx.showToast({
-      title: "预约功能待接入",
-      icon: "none"
+  onReserveTap(e) {
+    const machineIndex = Number(e.currentTarget.dataset.index || 0);
+    const machine = this.data.machines[machineIndex];
+    if (!machine) {
+      return;
+    }
+
+    const selectedDate = WEEK_DATES[this.data.selectedDateIndex] || WEEK_DATES[0];
+    const dateLabel = `${selectedDate.date} ${selectedDate.day}`;
+    const query = `machineId=${encodeURIComponent(machine.id)}&machineName=${encodeURIComponent(machine.name)}&dateKey=${encodeURIComponent(selectedDate.dateKey)}&dateLabel=${encodeURIComponent(dateLabel)}`;
+    wx.navigateTo({
+      url: `/pages/appointment/appoint?${query}`
     });
   },
 
   onMyActionTap(e) {
-    // 我的预约操作占位提示。
     const action = e.currentTarget.dataset.action || "";
-    const titleMap = {
-      edit: "加工文件修改功能待接入",
-      checkin: "报道功能待接入"
-    };
+    const latestBooking = bookingService.getLatestBooking();
+    if (!latestBooking) {
+      wx.showToast({
+        title: "暂无可操作预约",
+        icon: "none"
+      });
+      return;
+    }
+
+    if (action === "edit") {
+      if (latestBooking.reported) {
+        wx.showToast({
+          title: "已报道，无法修改文件",
+          icon: "none"
+        });
+        return;
+      }
+
+      wx.chooseMessageFile({
+        count: 1,
+        type: "file",
+        success: (res) => {
+          const file = (res.tempFiles || [])[0];
+          if (!file) {
+            return;
+          }
+
+          bookingService.patchLatestBooking({
+            processingFileName: file.name || "未命名文件",
+            processingFilePath: file.path || ""
+          });
+          this.refreshMyBooking();
+          wx.showToast({
+            title: "加工文件已更新",
+            icon: "success"
+          });
+        }
+      });
+      return;
+    }
+
+    if (action === "checkin") {
+      if (latestBooking.reported) {
+        wx.showToast({
+          title: "已完成报道",
+          icon: "none"
+        });
+        return;
+      }
+
+      bookingService.patchLatestBooking({ reported: true });
+      this.refreshMyBooking();
+      wx.showToast({
+        title: "报道成功",
+        icon: "success"
+      });
+      return;
+    }
 
     wx.showToast({
-      title: titleMap[action] || "功能待接入",
+      title: "功能待接入",
       icon: "none"
     });
   }
