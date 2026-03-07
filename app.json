@@ -22,7 +22,8 @@
     "pages/notices/notices",
     "pages/report/report",
     "pages/leave-history/leave-history",
-    "pages/team-dispersed/manage-team"
+    "pages/team-dispersed/manage-team",
+    "pages/process-instruction/process-instruction"
   ],
   "window": {
     "backgroundTextStyle": "light",

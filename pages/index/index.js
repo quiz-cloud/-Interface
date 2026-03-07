@@ -93,12 +93,12 @@ Page({
       leave: '/pages/leave/leave',
       project: '/pages/project-dispersed/project-dispersed',
       team: '/pages/team-dispersed/team-dispersed',
-      process: '/pages/process/process',
+      process: '/pages/process-instruction/process-instruction',
       report: '/pages/report/report'
     };
     
     wx.navigateTo({
-      url: routes[page] || '/pages/index/index'
+      url: routes[page] || '/pages/index/index',
     });
   }
 });
