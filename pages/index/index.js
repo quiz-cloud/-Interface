@@ -25,8 +25,8 @@ Page({
 
   // 查看全部课表
   goToSchedule() {
-    wx.navigateTo({
-      url: '/pages/schedule/schedule'
+    wx.switchTab({
+      url: '/pages/home/home'
     });
   },
 

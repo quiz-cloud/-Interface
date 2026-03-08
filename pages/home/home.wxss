@@ -28,21 +28,6 @@
   font-weight: 700;
 }
 
-.nav-back {
-  position: absolute;
-  left: 24rpx;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  padding: 0 8rpx;
-}
-
-.back-icon {
-  color: #fff;
-  font-size: 40rpx;
-  font-weight: 700;
-}
-
 .section-card {
   background: #fff3e0;
   border-radius: 20rpx;

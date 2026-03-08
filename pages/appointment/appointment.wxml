@@ -1,9 +1,5 @@
 <!--pages/appointment/appointment.wxml-->
 <view class="page">
-	<view class="banner">
-		<text class="banner-title">设备预约</text>
-	</view>
-
 	<view class="category-row">
 		<view
 			class="category-pill {{selectedCategoryIndex === index ? 'is-active' : ''}}"
