@@ -31,7 +31,7 @@ Page({
                 duration: 1200,
                 complete: () => {
                     wx.switchTab({
-                        url: "/pages/profile/profile"
+                      url: "/pages/index/index"
                     });
                 }
             });
