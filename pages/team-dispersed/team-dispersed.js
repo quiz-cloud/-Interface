@@ -4,9 +4,9 @@ Page({
     myTeam: {
       projectName: "智能家居控制系统",
       members: [
-        { name: "张三", role: "队长", avatar: "/images/avatar-placeholder.png" },
-        { name: "李四", role: "队员", avatar: "/images/avatar-placeholder.png" },
-        { name: "王五", role: "队员", avatar: "/images/avatar-placeholder.png" }
+        { name: "张三", role: "队长", avatar: "/images/avator/avator_boy.png" },
+        { name: "李四", role: "队员", avatar: "/images/avator/avator_boy.png" },
+        { name: "王五", role: "队员", avatar: "/images/avator/avator_boy.png" }
       ]
     },
     availableTeams: [
@@ -32,7 +32,9 @@ Page({
   },
 
   manageTeam() {
-    wx.showToast({ title: '管理功能待接入', icon: 'none' });
+    wx.navigateTo({
+      url: '/pages/team-dispersed/manage-team'
+    });
   },
 
   joinTeam(e) {

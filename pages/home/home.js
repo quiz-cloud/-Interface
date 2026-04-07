@@ -54,12 +54,6 @@ Page({
     });
   },
 
-  goBack() {
-    wx.switchTab({
-      url: "/pages/index/index"
-    });
-  },
-
   // 以下是为新按钮添加的占位事件处理函数
 
   goToConcentratedDocs() {

@@ -1,0 +1,59 @@
+<!--pages/profile/help-center.wxml-->
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">帮助中心</text>
+    <text class="page-subtitle">Help Center</text>
+  </view>
+
+  <!-- 搜索框 -->
+  <view class="search-box">
+    <input class="search-input" placeholder="搜索问题关键词" value="{{searchKeyword}}" bindinput="onSearchInput" />
+    <view class="search-icon">🔍</view>
+  </view>
+
+  <!-- 常见问题分类 -->
+  <view class="category-tabs">
+    <view 
+      class="category-tab {{activeCategory === index ? 'active' : ''}}" 
+      wx:for="{{categories}}" 
+      wx:key="id"
+      bindtap="switchCategory" 
+      data-index="{{index}}">
+      {{item.name}}
+    </view>
+  </view>
+
+  <!-- 问题列表 -->
+  <view class="qa-list">
+    <view class="qa-card" wx:for="{{filteredQuestions}}" wx:key="id">
+      <view class="qa-item" bindtap="toggleQuestion" data-id="{{item.id}}">
+        <view class="question-header">
+          <text class="question-icon">❓</text>
+          <text class="question-text">{{item.question}}</text>
+          <text class="expand-icon">{{item.expanded ? '▲' : '▼'}}</text>
+        </view>
+        <view class="answer-content" wx:if="{{item.expanded}}">
+          <text class="answer-text">{{item.answer}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{filteredQuestions.length === 0}}">
+      <text class="empty-icon">📭</text>
+      <text class="empty-text">没有找到相关问题</text>
+      <text class="empty-hint">试试其他关键词或切换分类</text>
+    </view>
+  </view>
+
+  <!-- 联系我们 -->
+  <view class="contact-card">
+    <view class="contact-header">
+      <text class="contact-icon">💬</text>
+      <text class="contact-title">没找到答案？</text>
+    </view>
+    <text class="contact-desc">您可以通过意见反馈向我们提问</text>
+    <button class="contact-btn" bindtap="goToFeedback">前往反馈</button>
+  </view>
+</view>
+

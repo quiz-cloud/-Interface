@@ -1,7 +1,8 @@
 <view class="container">
+
   <scroll-view scroll-y class="content-scroll">
     <view class="article">
-      <view class="title">工程训练安全承诺书</view>
+      <view class="title">工程训练加工须知</view>
       <view class="version">版本: 2026-V2.0</view>
 
       <view class="section">

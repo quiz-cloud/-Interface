@@ -1,0 +1,109 @@
+<!--pages/profile/feedback.wxml-->
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">意见反馈</text>
+    <text class="page-subtitle">Feedback</text>
+  </view>
+
+  <!-- 反馈类型选择 -->
+  <view class="section-card">
+    <view class="section-title">
+      <text class="title-icon">📋</text>
+      <text class="title-text">反馈类型</text>
+    </view>
+    <view class="type-options">
+      <view 
+        class="type-option {{selectedType === item.id ? 'active' : ''}}" 
+        wx:for="{{feedbackTypes}}" 
+        wx:key="id"
+        bindtap="selectType" 
+        data-id="{{item.id}}">
+        <text class="type-icon">{{item.icon}}</text>
+        <text class="type-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 问题描述 -->
+  <view class="section-card">
+    <view class="section-title">
+      <text class="title-icon">✍️</text>
+      <text class="title-text">问题描述</text>
+      <text class="required">*</text>
+    </view>
+    <textarea 
+      class="feedback-textarea" 
+      placeholder="请详细描述您遇到的问题或建议，我们会认真对待每一条反馈..."
+      value="{{description}}"
+      bindinput="onDescriptionInput"
+      maxlength="500"
+      show-confirm-bar="{{false}}"
+    />
+    <view class="char-count">{{description.length}}/500</view>
+  </view>
+
+  <!-- 联系方式 -->
+  <view class="section-card">
+    <view class="section-title">
+      <text class="title-icon">📞</text>
+      <text class="title-text">联系方式</text>
+      <text class="optional">（选填）</text>
+    </view>
+    <input 
+      class="contact-input" 
+      placeholder="手机号或邮箱，方便我们联系您"
+      value="{{contact}}"
+      bindinput="onContactInput"
+    />
+  </view>
+
+  <!-- 上传图片 -->
+  <view class="section-card">
+    <view class="section-title">
+      <text class="title-icon">🖼️</text>
+      <text class="title-text">上传截图</text>
+      <text class="optional">（选填，最多3张）</text>
+    </view>
+    <view class="image-upload">
+      <view class="image-item" wx:for="{{images}}" wx:key="index">
+        <image class="uploaded-image" src="{{item}}" mode="aspectFill" />
+        <view class="delete-btn" bindtap="deleteImage" data-index="{{index}}">×</view>
+      </view>
+      <view class="upload-btn" wx:if="{{images.length < 3}}" bindtap="chooseImage">
+        <text class="upload-icon">+</text>
+        <text class="upload-text">添加图片</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="submit-section">
+    <button class="submit-btn" bindtap="submitFeedback">提交反馈</button>
+    <view class="submit-hint">
+      <text class="hint-icon">💡</text>
+      <text class="hint-text">您的反馈对我们很重要，我们会尽快处理</text>
+    </view>
+  </view>
+
+  <!-- 历史反馈 -->
+  <view class="history-section" wx:if="{{historyList.length > 0}}">
+    <view class="history-header">
+      <text class="history-title">我的反馈记录</text>
+      <text class="history-count">{{historyList.length}}条</text>
+    </view>
+    <view class="history-list">
+      <view class="history-item" wx:for="{{historyList}}" wx:key="id" bindtap="viewHistory" data-id="{{item.id}}">
+        <view class="history-top">
+          <view class="history-type">
+            <text class="history-type-icon">{{item.typeIcon}}</text>
+            <text class="history-type-name">{{item.typeName}}</text>
+          </view>
+          <view class="history-status {{item.status}}">{{item.statusText}}</view>
+        </view>
+        <text class="history-desc">{{item.description}}</text>
+        <text class="history-time">{{item.time}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+

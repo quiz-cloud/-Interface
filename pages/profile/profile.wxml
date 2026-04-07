@@ -2,14 +2,14 @@
 <view class="container">
   <!-- 用户信息卡片 -->
   <view class="profile-card" wx:if="{{isLoggedIn}}">
-    <image class="avatar" src="/images/avatar-placeholder.png" mode="aspectFill"></image>
+    <image class="avatar" src="/images/avator/avator_boy.png" mode="aspectFill"></image>
     <view class="user-info">
       <text class="nickname">{{user.nickname}}</text>
       <text class="id-info">{{t.studentId}}: {{user.studentId}}</text>
     </view>
   </view>
   <view class="profile-card logged-out" wx:else>
-    <image class="avatar avatar-ghost" src="/images/avatar-placeholder.png" mode="aspectFill"></image>
+    <image class="avatar avatar-ghost" src="/images/avator/avator_boy.png" mode="aspectFill"></image>
     <view class="user-info">
       <text class="nickname">{{t.loggedOutTitle}}</text>
       <text class="id-info">{{t.loggedOutSubtitle}}</text>

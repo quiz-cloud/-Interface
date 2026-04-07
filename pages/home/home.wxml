@@ -1,8 +1,5 @@
 <view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
   <view class="nav-content">
-    <view class="nav-back" bindtap="goBack">
-      <text class="back-icon">&lt;</text>
-    </view>
     <text class="nav-title">全部课表</text>
   </view>
 </view>

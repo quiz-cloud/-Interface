@@ -1,9 +1,5 @@
 <!--pages/appointment/appointment.wxml-->
 <view class="page">
-	<view class="banner">
-		<text class="banner-title">设备预约</text>
-	</view>
-
 	<view class="category-row">
 		<view
 			class="category-pill {{selectedCategoryIndex === index ? 'is-active' : ''}}"
@@ -54,7 +50,13 @@
 	<view class="machine-list">
 		<view class="machine-card" wx:for="{{machines}}" wx:key="index">
 			<view class="machine-image">
-				<text>设备图片</text>
+        <image 
+          class="machine-img"
+          src="{{item.imageUrl}}"
+          mode="widthFix"
+          lazy-load="true"
+          data-index="{{index}}"
+        ></image>
 			</view>
 			<view class="machine-info">
 				<view class="machine-title-row">
